@@ -1,4 +1,5 @@
 import data from './data';
+import Note from './components/Note';
 
 function App() {
   return (
@@ -25,23 +26,7 @@ function App() {
           <div className="row center">
             {
               data.notes.map(note => (
-                  <div key={note.id} className="card">
-                    <a href={`/note/${note.id}`}>
-                      <img className="medium" src={note.image} alt={note.title}/>
-                    </a>
-                    <div className="card-body">
-                      <a href={`/note/${note.id}`}>
-                        <h2>{note.title}</h2>
-                      </a>
-                      <div className="rating">
-                        <span> <i className="fa fa-star"></i></span>
-                        <span> <i className="fa fa-star"></i></span>
-                        <span> <i className="fa fa-star"></i></span>
-                        <span> <i className="fa fa-star-half-o"></i></span>
-                        <span> <i className="fa fa-star-o"></i></span>
-                      </div>
-                    </div>
-                  </div>
+                  <Note key={note.id} note={note}></Note>
               ))
             }
 

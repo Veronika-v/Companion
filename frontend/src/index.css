@@ -11,6 +11,7 @@ body {
   font-family:  Apple Chancery;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(./images/lines.jpg);
 }
 #root{
   height: 100%;
@@ -74,25 +75,27 @@ body {
     'main'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: 6rem 1fr 5rem;
+  grid-template-rows: 7rem 1fr 5rem;
   height: 100%;
 }
 
 header{
   grid-area: header;
   background-color: #d0e1f9;
+  box-shadow: #04103e 0 0 25px;
 }
 
 main{
   grid-area: main;
-  background-color:white ;
-  padding: 1rem;
+  padding: 5rem 0 3rem 0;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 footer{
   grid-area: footer;
   background-color: #041339;
   color: #ffffff;
+  box-shadow: #04103e 0 0 15px;
 }
 
 
@@ -141,18 +144,18 @@ a.brand{
 
 /* image */
 img{
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
 }
 img.medium{
-  max-width: 29rem;
+  max-width: 35rem;
   width: 100%;
 }
 
 /* card */
 .card{
-  border: 0.1rem #c0c0c0 solid;
-  background-color: rgba(249, 245, 208, 0.5);
-  border-radius: 0.5rem;
+  border: 0.1rem #072e94 solid;
+  background-color: rgba(208, 221, 236, 0.7);
+  border-radius: 0.3rem;
   margin: 1rem;
 }
 .card-body{
@@ -164,7 +167,10 @@ img.medium{
 
 /* rating */
 .rating span{
-  color: #f8d636;
   margin: 0.1rem;
+}
+
+.stars{
+  color: #f8d636;
   text-shadow: #5f5a2f 0 0 2px;
 }

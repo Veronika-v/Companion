@@ -12,7 +12,8 @@ const data = {
             money: 0,
             ageFrom: 10,
             ageTo: 15,
-            rating: 4.5
+            rating: 4.5,
+            numReviews: 8
         },
         {
             id:2,
@@ -26,7 +27,8 @@ const data = {
             money: 0,
             ageFrom: 20,
             ageTo: 40,
-            rating: 2
+            rating: 2,
+            numReviews: 5
         },
         {
             id:3,
@@ -40,7 +42,8 @@ const data = {
             money: 0,
             ageFrom: 10,
             ageTo: 15,
-            rating: 4.5
+            rating: 4.5,
+            numReviews: 4
         },
         {
             id:4,
@@ -54,7 +57,8 @@ const data = {
             money: 0,
             ageFrom: 10,
             ageTo: 15,
-            rating: 4.5
+            rating: 4.5,
+            numReviews: 3
         },
         {
             id:5,
@@ -68,7 +72,8 @@ const data = {
             money: 0,
             ageFrom: 10,
             ageTo: 15,
-            rating: 2.5
+            rating: 2.5,
+            numReviews: 9
         }
     ]
 }

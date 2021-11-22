@@ -1,0 +1,170 @@
+html{
+  font-size: 62.5%; /* 16px * 62.5 = 10px = 1rem */
+  box-sizing: border-box;
+  color: #041339;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-size: 1.8rem;
+  font-family:  Apple Chancery;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root{
+  height: 100%;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: transparent;
+  color: #041339;
+  padding: 6px;
+  font-size: 1.8rem;
+  border: none;
+  font-family:  Apple Chancery;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  text-shadow: #f8d636 0 0 10px;
+  font-weight: bold;
+}
+
+/* Layout */
+.grid-container{
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 6rem 1fr 5rem;
+  height: 100%;
+}
+
+header{
+  grid-area: header;
+  background-color: #d0e1f9;
+}
+
+main{
+  grid-area: main;
+  background-color:white ;
+  padding: 1rem;
+}
+
+footer{
+  grid-area: footer;
+  background-color: #041339;
+  color: #ffffff;
+}
+
+
+/* Common */
+
+h1{
+  font-size: 1.9rem;
+  padding: 1rem 0;
+}
+h2{
+  font-size: 1.7rem;
+  padding: 1rem 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-shadow: #f8d636 0 0 10px; /* Свечение вокруг текста */
+  color: #041339;
+  font-weight: bold;
+}
+
+header a{
+  color: #041339;
+  padding: 1rem;
+}
+
+a.brand{
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row.center{
+  justify-content: center;
+}
+
+
+/* image */
+img{
+  border-radius: 0.5rem;
+}
+img.medium{
+  max-width: 29rem;
+  width: 100%;
+}
+
+/* card */
+.card{
+  border: 0.1rem #c0c0c0 solid;
+  background-color: rgba(249, 245, 208, 0.5);
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+.card-body{
+  padding: 1rem;
+}
+.card-body > *{
+  margin-bottom: 0.5rem;
+}
+
+/* rating */
+.rating span{
+  color: #f8d636;
+  margin: 0.1rem;
+  text-shadow: #5f5a2f 0 0 2px;
+}

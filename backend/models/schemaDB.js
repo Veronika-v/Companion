@@ -126,7 +126,7 @@ function internalORM(sequelize) {
     User.hasMany(Note, {foreignKey : 'userId'});
 
     Category.hasOne(Note, {foreignKey : 'categoryId'});
-    Gender.hasOne(Note, {foreignKey : 'statusId', allowNull: true});
+    Gender.hasOne(Note, {foreignKey : 'genderId', allowNull: true});
     Subcategory.hasOne(Note, {foreignKey : 'subcategoryId',allowNull: true});
 
     Category.hasMany(Subcategory, {foreignKey : 'categoryId'});

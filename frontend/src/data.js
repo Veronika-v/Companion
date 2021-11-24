@@ -13,7 +13,10 @@ const data = {
             ageFrom: 10,
             ageTo: 15,
             rating: 4.5,
-            numReviews: 8
+            numReviews: 8,
+            gender: 'male',
+            category:'sport',
+            subcategory: 'volleyball'
         },
         {
             id:2,
@@ -28,7 +31,10 @@ const data = {
             ageFrom: 20,
             ageTo: 40,
             rating: 2,
-            numReviews: 5
+            numReviews: 5,
+            gender: 'male',
+            category:'sport',
+            subcategory: 'karate'
         },
         {
             id:3,
@@ -43,7 +49,10 @@ const data = {
             ageFrom: 10,
             ageTo: 15,
             rating: 4.5,
-            numReviews: 4
+            numReviews: 4,
+            gender: 'both',
+            category:'sport',
+            subcategory: 'badminton'
         },
         {
             id:4,
@@ -58,7 +67,10 @@ const data = {
             ageFrom: 10,
             ageTo: 15,
             rating: 4.5,
-            numReviews: 3
+            numReviews: 3,
+            gender: 'female',
+            category:'sport',
+            subcategory: 'hockey'
         },
         {
             id:5,
@@ -73,7 +85,10 @@ const data = {
             ageFrom: 10,
             ageTo: 15,
             rating: 2.5,
-            numReviews: 9
+            numReviews: 9,
+            gender: 'male',
+            category:'sport',
+            subcategory: 'football'
         }
     ]
 }

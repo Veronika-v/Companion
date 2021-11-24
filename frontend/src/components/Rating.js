@@ -35,8 +35,8 @@ export default function Rating(props) {
                         ?"fa fa-star-half-o"
                         :'fa fa-star-o'}></i>
                 </span>
+                <span>{ numReviews + ' reviews'}</span>
             </div>
-            <span>{ numReviews + ' reviews'}</span>
         </div>
     )
 }

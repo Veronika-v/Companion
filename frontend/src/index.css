@@ -7,32 +7,33 @@ html{
 body {
   margin: 0;
   height: 100vh;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-family:  Apple Chancery;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(./images/lines.jpg);
+  background-color: #a9a5a5;
+  /*background: url(./images/lines.jpg);*/
 }
 #root{
   height: 100%;
 }
 
+
+/* DROPDOWN */
 /* Style The Dropdown Button */
 .dropbtn {
   background-color: transparent;
   color: #041339;
   padding: 6px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   border: none;
   font-family:  Apple Chancery;
 }
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -42,7 +43,6 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 /* Links inside the dropdown */
 .dropdown-content a {
   color: black;
@@ -50,22 +50,22 @@ body {
   text-decoration: none;
   display: block;
 }
-
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #f1f1f1
 }
-
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  text-shadow: #f8d636 0 0 10px;
+.dropbtn:hover {
+  text-shadow: #334777 0 0 10px;
   font-weight: bold;
+  background-color: #d0e1f9 ;
 }
+
+
 
 /* Layout */
 .grid-container{
@@ -76,6 +76,7 @@ body {
     'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 7rem 1fr 5rem;
+  /*grid-auto-rows: auto;*/
   height: 100%;
 }
 
@@ -84,10 +85,15 @@ header{
   background-color: #d0e1f9;
   box-shadow: #04103e 0 0 25px;
 }
+/*header.home{
+  background-image: url(./images/bear.jpg);
+  display: block; !* Для старых браузеров *!
+  height: 405px;
+}*/
 
 main{
   grid-area: main;
-  padding: 5rem 0 3rem 0;
+  padding: 4rem 0.5rem 3rem 0.5rem;
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -101,28 +107,58 @@ footer{
 
 /* Common */
 
-h1{
+/*h1{
   font-size: 1.9rem;
   padding: 1rem 0;
 }
 h2{
   font-size: 1.7rem;
   padding: 1rem 0;
-}
+}*/
 
 a{
   text-decoration: none;
 }
-
 a:hover{
-  text-shadow: #f8d636 0 0 10px; /* Свечение вокруг текста */
+  text-shadow: #334777 0 0 10px; /* Свечение вокруг текста */
   color: #041339;
   font-weight: bold;
 }
+ul{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+li{
+  margin-top: 1rem ;
+}
+button{
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 0.1rem #072e94 solid;
+  font-size: 1.6rem;
+  font-family:  Apple Chancery;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #98b4ec;
+  cursor: pointer;
+}
+button:hover{
+  background-color: #5584e7;
+}
+button.block{
+  width: 100%;
+}
 
+
+a{
+  color: #041339;
+  text-decoration: underline;
+}
 header a{
   color: #041339;
   padding: 1rem;
+  text-decoration: none;
 }
 
 a.brand{
@@ -136,9 +172,18 @@ a.brand{
   justify-content: space-between;
   align-items: center;
 }
-
 .row.center{
   justify-content: center;
+}
+.row.top{
+  align-items: flex-start;
+}
+.col-1{
+  flex: 2 1 60rem;
+}
+.col-2{
+  flex: 1 1 25rem;
+  margin-right: 2rem;
 }
 
 
@@ -148,6 +193,10 @@ img{
 }
 img.medium{
   max-width: 35rem;
+  width: 100%;
+}
+img.large{
+  max-width: 55rem;
   width: 100%;
 }
 
@@ -168,9 +217,18 @@ img.medium{
 /* rating */
 .rating span{
   margin: 0.1rem;
-}
-
-.stars{
   color: #f8d636;
   text-shadow: #5f5a2f 0 0 2px;
+}
+
+.rating span:last-child{
+  padding-left: 1.5rem;
+  color: #041339;
+  text-shadow: none;
+  font-style: italic;
+}
+
+.nameOfField{
+  font-weight: bold;
+  font-style: italic;
 }

@@ -14,7 +14,7 @@ export default function Note(props){
                 </a>
                 <p>{note.description}</p>
                 <p>Count of members: {note.countOfMembers}</p>
-                <p>Cost: {note.money}</p>
+                <p>Category: {note.category}</p>
                 <p>Age from {note.ageFrom} to {note.ageTo}</p>
                 <Rating
                     rating={note.rating}

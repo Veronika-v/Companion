@@ -1,8 +1,25 @@
-/*const express =require('express');
-const app =express();*/
+const express =require('express');
+const app =express();
 const bcrypt = require('bcrypt');
-const sequelize = require('./connectionDB')
+const sequelize = require('./connectionDB');
+const data = require('./data');
 
+app.get('/api/notes', (req,res) =>{
+    res.send(data.notes);
+})
+app.get('/', (req, res)=>{
+    res.send('Server is ready');
+});
+
+const port = process.env.PORT || 5000;
+app.listen(port, ()=>{
+    console.log( `server at http://localhost:${port}`);
+});
+
+
+
+
+/*
 const {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote} = require('./models/schemaDB').ORM(sequelize);
 
 const status ={
@@ -36,4 +53,5 @@ const user ={
         console.log("CCCCOOONNNSSSOLLEEEEE: "+ res);
     }).catch(err=>console.log(err))
 
+*/
 

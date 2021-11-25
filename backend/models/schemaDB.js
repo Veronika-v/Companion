@@ -74,8 +74,8 @@ function internalORM(sequelize) {
             firstName: { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
             lastName: { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
             birthDate: { type: Sequelize.DATE, allowNull: true },
-            email: { type: Sequelize.STRING, allowNull: false, defaultValue: '' },
-            login: {type: Sequelize.STRING, allowNull: false},
+            email: { type: Sequelize.STRING,  unique: true },
+            login: {type: Sequelize.STRING, allowNull: false, unique: true},
             password: { type: Sequelize.STRING, allowNull: false },// hash
             role: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0 },
             image: { type: Sequelize.STRING, allowNull: true },
@@ -104,6 +104,7 @@ function internalORM(sequelize) {
             money: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0 }, // do the user need money for the event (yes/no, other info in description)?
             ageFrom: { type: Sequelize.INTEGER, allowNull: true },
             ageTo: { type: Sequelize.INTEGER, allowNull: true },
+            image: {type: Sequelize.STRING, allowNull: true },
         },
         { sequelize, modelName: "Note", tableName: "Note", timestamps: false }
     );
@@ -120,20 +121,20 @@ function internalORM(sequelize) {
         { sequelize, modelName: "FavoriteNote", tableName: "FavoriteNote", timestamps: false }
     );
 
-    Gender.hasOne(User, {foreignKey : 'genderId'});
-    UserStatus.hasOne(User, {foreignKey : 'statusId'});
-    User.hasMany(FavoriteNote, {foreignKey : 'userId'});
-    User.hasMany(Note, {foreignKey : 'userId'});
+    Gender.hasOne(User, {foreignKey : {name: 'genderId', allowNull: true}});
+    UserStatus.hasOne(User, {foreignKey : {name:  'statusId', allowNull: false}});
+    User.hasMany(FavoriteNote, {foreignKey : {name:  'userId', allowNull: false}});
+    User.hasMany(Note, {foreignKey : {name:  'userId', allowNull: false}});
 
-    Category.hasOne(Note, {foreignKey : 'categoryId'});
-    Gender.hasOne(Note, {foreignKey : 'genderId', allowNull: true});
-    Subcategory.hasOne(Note, {foreignKey : 'subcategoryId',allowNull: true});
+    Category.hasOne(Note, {foreignKey : {name:  'categoryId', allowNull: false}});
+    Gender.hasOne(Note, {foreignKey : {name:  'genderId', allowNull: true}});
+    Subcategory.hasOne(Note, {foreignKey : {name:  'subcategoryId',allowNull: true}});
 
-    Category.hasMany(Subcategory, {foreignKey : 'categoryId'});
+    Category.hasMany(Subcategory, {foreignKey : {name:  'categoryId', allowNull: false}});
 
-    Note.hasOne(FavoriteNote, {foreignKey : 'noteId'});
+    Note.hasOne(FavoriteNote, {foreignKey : {name:  'noteId', allowNull: false}});
 
-    sequelize.sync(true).then(result=>{ //{force: true} - пересоздаст таблицы
+    sequelize.sync({alter: true}).then(result=>{ //{force: true} - пересоздаст таблицы
         console.log(result);
     })
         .catch(err=> console.log(err));

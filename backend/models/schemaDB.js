@@ -78,7 +78,7 @@ function internalORM(sequelize) {
             login: {type: Sequelize.STRING, allowNull: false, unique: true},
             password: { type: Sequelize.STRING, allowNull: false },// hash
             role: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0 },
-            image: { type: Sequelize.STRING, allowNull: true },
+            image: { type: Sequelize.TEXT('long'), allowNull: true },
             nativeTown: { type: Sequelize.STRING, allowNull: true },
             education: { type: Sequelize.STRING, allowNull: true },
             phoneNumber: { type: Sequelize.STRING, allowNull: true }, //validation in the future
@@ -104,7 +104,7 @@ function internalORM(sequelize) {
             money: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: 0 }, // do the user need money for the event (yes/no, other info in description)?
             ageFrom: { type: Sequelize.INTEGER, allowNull: true },
             ageTo: { type: Sequelize.INTEGER, allowNull: true },
-            image: {type: Sequelize.STRING, allowNull: true },
+            image: {type: Sequelize.TEXT('long'), allowNull: true },
         },
         { sequelize, modelName: "Note", tableName: "Note", timestamps: false }
     );
@@ -134,7 +134,7 @@ function internalORM(sequelize) {
 
     Note.hasOne(FavoriteNote, {foreignKey : {name:  'noteId', allowNull: false}});
 
-    sequelize.sync({alter: true}).then(result=>{ //{force: true} - пересоздаст таблицы
+    sequelize.sync(true).then(result=>{ //{force: true} - пересоздаст таблицы, {alter: true}
         console.log(result);
     })
         .catch(err=> console.log(err));

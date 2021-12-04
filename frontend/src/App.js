@@ -18,7 +18,6 @@ function App() {
                   <a href="#">Notes</a>
                   <a href="#">Favorites</a>
                   <a href="#">Notifications</a>
-                  <a href="#">Chats</a>
                 </div>
               </div>
               <a href="/signIn">Sign In</a>

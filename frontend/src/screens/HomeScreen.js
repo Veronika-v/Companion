@@ -1,26 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Note from "../components/Note";
-import axios from "axios";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import {useDispatch, useSelector} from "react-redux";
+import {listNotes} from "../actions/noteActions";
 
 export default function HomeScreen(){
-    const [notes, setNotes] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const dispatch = useDispatch();
+    const noteList = useSelector( state => state.noteList);
+    const {loading, error, notes} = noteList;
     useEffect(()=>{
-       const fetchData = async () =>{
-           try {
-               setLoading(true);
-               const {data} = await axios.get('/api/notes');
-               setLoading(false);
-               setNotes(data);
-           }catch (err){
-               setError(err.message);
-               setLoading(false);
-           }
-       } ;
-       fetchData();
+       dispatch(listNotes());
     }, [])
     return (
         <div>

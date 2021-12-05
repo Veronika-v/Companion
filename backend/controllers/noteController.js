@@ -3,35 +3,13 @@ const Sequelize = require("sequelize");
 const { Note} = require('../models/schemaDB').ORM(sequelize);
 
 let notes;
-function reqNote(req){
-     console.log('image!:   '+req.body.image);
-       return {
-            /*id: req.body.id,*/
-            title: req.body.title,
-            description: req.body.description,
-            countOfMembers: req.body.countOfMembers,
-            geolocation: req.body.geolocation,
-            meetingDateTime: req.body.meetingDateTime,
-            status: req.body.status,
-            money: req.body.money,
-            ageFrom: req.body.ageFrom,
-            ageTo: req.body.ageTo,
-            userId: req.body.userId,
-            categoryId: req.body.categoryId,
-            subcategoryId: req.body.subcategoryId,
-            genderId: req.body.genderId,
-            image: req.body.image
-       }
-}
 
 module.exports = {
-    addNote : async (req, res) =>{
-        //const newNote = reqNote(req);
-        console.log("body:  "+req.body);
+    addNote : async (req) =>{
         return await Note.create(req.body);
     },
     updateNote : async (req, res)=>{
-        const updateNote = reqNote(req);
+        const updateNote = req.body;
 
         let note = await Note.findOne({where: {id: updateNote.id}});
         if(!note){
@@ -73,8 +51,24 @@ module.exports = {
     from Note n join Category c on n.categoryId=c.id 
     join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id;`, { type: Sequelize.QueryTypes.SELECT });
-        console.log(notes);
         return notes;
+    },
+    findByNoteId: async (req, res) => {
+        const id = req.params.id;
+        let note = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
+    n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
+    c.category, s.subcategory, g.gender
+    from Note n join Category c on n.categoryId=c.id 
+    join Subcategory s on n.subcategoryId=s.id 
+    join Gender g on n.genderId=g.id where n.id=${id};`, { type: Sequelize.QueryTypes.SELECT });
+        //let note = await Note.findOne({where: {id: id}});
+
+        if(!note){
+            res.status(404).send("That note doesn't exist"+ req.body.id+"  "+note);
+        }
+        else {
+            res.send(note);
+        }
     },
     /*FindByNoteTitle: async (json) => {
         return await Users.findAll({

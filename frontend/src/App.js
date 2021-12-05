@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NoteScreen from "./screens/NoteScreen";
 import HomeScreen from "./screens/HomeScreen";
+import NotificationScreen from "./screens/NotificationScreen";
+import React from "react";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           </header>
           <main>
             <Routes>
+              <Route path = '/notifications/:id' element={<NotificationScreen/>}></Route>
               <Route path = '/note/:id' element={<NoteScreen/>} ></Route>
               <Route path = '/' element={<HomeScreen/>} exact></Route>
             </Routes>

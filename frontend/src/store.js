@@ -1,12 +1,13 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunk from "redux-thunk";
-import {noteListReducer} from './reducers/noteReducers'
+import {noteDetailsReducer, noteListReducer} from './reducers/noteReducers'
 import {composeWithDevTools} from "redux-devtools-extension";
 
 
 const initialState = {};
 const reducer = combineReducers({
-    noteList: noteListReducer
+    noteList: noteListReducer,
+    noteDetails: noteDetailsReducer
 })
 
 const store = createStore(

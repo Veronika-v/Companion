@@ -32,10 +32,14 @@ app.get('/api/notes', (req,res) =>{
 
 });
 
+app.get('/api/notes/:id', (req,res) => {
+    noteController.findByNoteId(req, res);
+});
+
 app.post('/api/note/add', (req,res) =>{
     //res.send(data.notes);
     console.log("bodddyyyy: "+ req.body);
-    noteController.addNote(req, res).then(note =>{
+    noteController.addNote(req).then(note =>{
         res.send(note);
     });
 });

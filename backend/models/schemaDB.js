@@ -9,6 +9,7 @@ class Subcategory extends Model {};
 class User extends Model {};
 class Note extends Model {};
 class FavoriteNote extends Model {};
+class RespondedNote extends Model {};
 
 function internalORM(sequelize) {
     Gender.init(
@@ -121,9 +122,22 @@ function internalORM(sequelize) {
         { sequelize, modelName: "FavoriteNote", tableName: "FavoriteNote", timestamps: false }
     );
 
+    RespondedNote.init(
+        {
+            id: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true,
+            }
+        },
+        { sequelize, modelName: "RespondedNote", tableName: "RespondedNote", timestamps: false }
+    );
+
     Gender.hasOne(User, {foreignKey : {name: 'genderId', allowNull: true}});
     UserStatus.hasOne(User, {foreignKey : {name:  'statusId', allowNull: false}});
     User.hasMany(FavoriteNote, {foreignKey : {name:  'userId', allowNull: false}});
+    User.hasMany(RespondedNote, {foreignKey : {name:  'userId', allowNull: false}});
     User.hasMany(Note, {foreignKey : {name:  'userId', allowNull: false}});
 
     Category.hasOne(Note, {foreignKey : {name:  'categoryId', allowNull: false}});
@@ -133,6 +147,7 @@ function internalORM(sequelize) {
     Category.hasMany(Subcategory, {foreignKey : {name:  'categoryId', allowNull: false}});
 
     Note.hasOne(FavoriteNote, {foreignKey : {name:  'noteId', allowNull: false}});
+    Note.hasOne(RespondedNote, {foreignKey : {name:  'noteId', allowNull: false}});
 
     sequelize.sync(true).then(result=>{ //{force: true} - пересоздаст таблицы, {alter: true}
         console.log(result);

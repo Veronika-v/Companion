@@ -2,9 +2,11 @@ const express =require('express');
 const app =express();
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const noteController = require('./controllers/noteController');
+
+
 const notifRouter = require('./routes/notifRouter');
 const noteRouter = require('./routes/noteRouter');
+const categoryRouter = require('./routes/categoryRouter');
 
 app.use(bodyParser.json({ limit: '5mb' }))
 

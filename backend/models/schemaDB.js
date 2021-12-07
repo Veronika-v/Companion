@@ -157,6 +157,6 @@ function internalORM(sequelize) {
 
 exports.ORM = (s) => {
     internalORM(s);
-    return {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote};
+    return {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote, RespondedNote};
 }
 

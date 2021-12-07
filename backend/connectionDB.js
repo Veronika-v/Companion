@@ -10,4 +10,7 @@ const sequelize = new Sequelize("sql11450327", "sql11450327", "AWcsAgjxKi", {
     }
 });
 
-module.exports = sequelize;
+let db = {};
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+module.exports = db;

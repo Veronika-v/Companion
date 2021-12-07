@@ -1,5 +1,6 @@
-const sequelize = require('../connectionDB');
-const {Sequelize, Op} = require("sequelize");
+let db = require('../connectionDB'),
+    sequelize = db.sequelize,
+    Sequelize = db.Sequelize;
 const { Note} = require('../models/schemaDB').ORM(sequelize);
 
 module.exports = {

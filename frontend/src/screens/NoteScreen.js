@@ -38,7 +38,22 @@ export default function NoteScreen(props){
                 : error?<MessageBox variant='danger'>{error}</MessageBox>
                     : (
                         <div>
-                            {note.map(note => (
+                            {note.map(note => {
+                            function getAgeRange(){
+                                let range;
+                                if(note.ageFrom || note.ageTo){
+                                    if(note.ageFrom)
+                                        range=`from ${note.ageFrom}y.o. `
+                                    else
+                                        range='';
+                                    if(note.ageTo)
+                                        range+=`to ${note.ageTo}y.o.`;
+                                }else{
+                                    range=` no age range`;
+                                }
+                                return range;
+                            }
+                            return(
                             <div className='row'>
                                 <div className='col-2'>
                                     <img className="large" src={note.image}/>
@@ -62,11 +77,11 @@ export default function NoteScreen(props){
                                         <li><span className='nameOfField'>Category: </span> {note.category}</li>
                                         <li><span className='nameOfField'>Subcategory: </span> {note.subcategory}</li>
                                         <li><span className='nameOfField'>Cost: </span> {note.money==0?`don't need money`:`need some money`}</li>
-                                        <li><span className='nameOfField'>Age range: </span> { (note.ageFrom || note.ageTo)?((note.ageFrom?`from ${note.ageFrom} y.o.`:''), (note.ageTo?`to ${note.ageTo}y.o.`:'')):'does not matter'}</li>
+                                        <li><span className='nameOfField'>Age range: </span> {getAgeRange()}</li>
                                     </ul>
                                 </div>
                             </div>
-                                ))}
+                                )})}
                         </div>
                     )
             }

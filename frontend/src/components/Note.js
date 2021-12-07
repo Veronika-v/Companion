@@ -4,6 +4,20 @@ import {Link} from "react-router-dom";
 
 export default function Note(props){
     const {note} = props;
+    function getAgeRange(){
+        let range;
+        if(note.ageFrom || note.ageTo){
+            if(note.ageFrom)
+                range=`from ${note.ageFrom}y.o. `
+            else
+                range='';
+            if(note.ageTo)
+                range+=`to ${note.ageTo}y.o.`;
+        }else{
+            range=` no age range`;
+        }
+        return range;
+    }
     return (
         <div key={note.id} className="card">
             <Link to={`/note/${note.id}`}>
@@ -16,7 +30,7 @@ export default function Note(props){
                 <p>{console.log(`id:${note.id}, length:${note.description.length}`)}{note.description.length<190?note.description:`${note.description.slice(0,190)}...`}</p>
                 <p>Count of members: {note.countOfMembers}</p>
                 <p>Category: {note.category}</p>
-                <p>Age:  from {note.ageFrom} to {note.ageTo}</p>
+                <p>Age: {getAgeRange()}</p>
                 {/*<Rating
                     rating={note.rating}
                     numReviews={note.numReviews}>

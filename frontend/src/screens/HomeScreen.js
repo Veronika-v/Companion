@@ -4,6 +4,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import {useDispatch, useSelector} from "react-redux";
 import {listNotes} from "../actions/noteActions";
+import HomeFilter from "../components/HomeFilter";
 
 export default function HomeScreen(){
     const dispatch = useDispatch();
@@ -16,11 +17,14 @@ export default function HomeScreen(){
         <div>
             {loading?<LoadingBox/>
             : error?<MessageBox variant='danger'>{error}</MessageBox>
-            : <div className="row center">
-                        {notes.map(note => (
-                            <Note key={note.id} note={note}></Note>
-                        ))}
-                    </div>
+            : <div>
+                 {/*<HomeFilter/>*/}
+                 <div className="row center">
+                     {notes.map(note => (
+                         <Note key={note.id} note={note}></Note>
+                     ))}
+                 </div>
+            </div>
             }
         </div>
     )

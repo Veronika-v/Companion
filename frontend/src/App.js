@@ -19,7 +19,7 @@ function App() {
                   <Link to="#">Profile</Link>
                   <Link to="#">Notes</Link>
                   <Link to="#">Favorites</Link>
-                  <Link to="#">Notifications</Link>
+                  <Link to="/notifications">Notifications</Link>
                 </div>
               </div>
               <Link to="/signIn">Sign In</Link>
@@ -27,7 +27,7 @@ function App() {
           </header>
           <main>
             <Routes>
-              <Route path = '/notifications/:id' element={<NotifScreen/>}></Route>
+              <Route path = '/notifications' element={<NotifScreen/>}></Route>
               <Route path = '/note/:id' element={<NoteScreen/>} ></Route>
               <Route path = '/' element={<HomeScreen/>} exact></Route>
             </Routes>

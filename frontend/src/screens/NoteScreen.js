@@ -6,6 +6,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import {Link} from "react-router-dom";
 import Rating from "../components/Rating";
+import Axios from "axios";
 
 
 export default function NoteScreen(props){
@@ -22,7 +23,13 @@ export default function NoteScreen(props){
     }, [dispatch, noteId]);
 
     const addToNotificationsHandler = () =>{
-        navigate(`/notifications/${noteId}`);
+        Axios.post(`/notifications/addNotification`,
+            {
+                noteId:noteId,
+                userId: 6 //// изменить на текущего пользователя!!!!!!!!!!
+            });
+        navigate('/');
+        //navigate(`/notifications/${noteId}`);
     }
 
     return (
@@ -32,7 +39,7 @@ export default function NoteScreen(props){
                     : (
                         <div>
                             {note.map(note => (
-                            <div className='row top'>
+                            <div className='row'>
                                 <div className='col-2'>
                                     <img className="large" src={note.image}/>
                                     <button onClick={addToNotificationsHandler} className='block'>Respond to the note</button>

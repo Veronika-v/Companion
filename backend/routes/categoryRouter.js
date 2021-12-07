@@ -1,10 +1,10 @@
 const express = require('express');
-const noteController = require('../controllers/categoryController');
+const categoryController = require('../controllers/categoryController');
 
 
 const router = express.Router();
-router.get('/', noteController.getAllCategories);
-router.get('/subcategories', noteController.getAllSubcategories);
+router.get('/', categoryController.getAllCategories);
+router.get('/subcategories', categoryController.getAllSubcategories);
 
 module.exports ={
     router : router

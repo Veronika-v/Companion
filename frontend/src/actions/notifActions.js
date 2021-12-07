@@ -1,16 +1,15 @@
 import Axios from "axios";
 import {NOTIFICATION_ADD_ITEM} from "../constants/notifConstants";
 
-export const addToNotifications = (noteId) => async (dispatch, getState) => {
-    const {data} = await Axios.get(`/api/notes/${noteId}`);
+export const getAllNotificationsForUser = () => async (dispatch, getState) => {
+    const userId = 6; // установить текущего!!!!!
+    const {data} = await Axios.get(`/notifications/getAllForRespondedUser/${userId}`);
     dispatch({
         type: NOTIFICATION_ADD_ITEM,
-        payload: {
-            firstName:data.firstName,
-            lastName: data.lastName,
-            userId: data.userId,
-            noteId: data.noteId,
-            title: data.title
-        }
+        payload: data.map(item => ({
+            description: item.description,
+            noteId: item.noteId,
+            title: item.title
+        }))
     })
 }

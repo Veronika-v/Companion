@@ -1,22 +1,25 @@
 import React, {useEffect} from 'react'
 import {useParams} from "react-router-dom";
-import {addToNotifications} from "../actions/notifActions";
-import {useDispatch} from "react-redux";
+import {getAllNotificationsForUser} from "../actions/notifActions";
+import {useDispatch, useSelector} from "react-redux";
+import Notification from "../components/Notification";
 
 export default function NotificationScreen(props){
     const params = useParams();
-    const noteId = params.id;
 
     const dispatch = useDispatch();
+    const notifications = useSelector(state => state.notification);
+    const {loading, error, notif}= notifications;
     useEffect(()=>{
-        if(noteId){
-            dispatch(addToNotifications(noteId));
-        }
-    }, [dispatch, noteId]);
+        dispatch(getAllNotificationsForUser());
+    }, [dispatch]);
     return (
         <div>
-            <h1>Notifications Screen</h1>
-            <p>ADD TO NOTIFICATIONS: NoteId: {noteId}</p>
+            <div className="row center">
+                {notif.map(n => (
+                    <Notification key={n.id} notif={n}></Notification>
+                ))}
+            </div>
         </div>
     )
 }

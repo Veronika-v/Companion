@@ -8,7 +8,7 @@ router.put('/updateNote', noteController.updateNote);
 router.delete('/delete/:id', noteController.deleteNote);
 router.get('/', noteController.getAll);
 router.get('/:id', noteController.findByNoteId);
-// router.get('/:title', noteController.FindByNoteTitle);
+router.get('/search/:title', noteController.FindByNoteTitle);
 
 module.exports ={
     router : router

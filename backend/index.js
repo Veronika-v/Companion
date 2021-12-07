@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const notifRouter = require('./routes/notifRouter');
 const noteRouter = require('./routes/noteRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const userRouter = require('./routes/userRouter');
 
 app.use(bodyParser.json({ limit: '5mb' }))
 
@@ -14,6 +15,8 @@ app.use(express.json());
 
 app.use('/notifications', notifRouter.router);
 app.use('/api/notes', noteRouter.router);
+app.use('/categories', categoryRouter.router);
+app.use('/users', userRouter.router);
 
 /*//const {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote} = require('./models/schemaDB').ORM(sequelize);
 

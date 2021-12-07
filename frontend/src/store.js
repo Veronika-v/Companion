@@ -9,7 +9,7 @@ const initialState = {};
 const reducer = combineReducers({
     noteList: noteListReducer,
     noteDetails: noteDetailsReducer,
-    noification : notificationReducer
+    notification : notificationReducer
 })
 
 const store = createStore(

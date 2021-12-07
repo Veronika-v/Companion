@@ -13,8 +13,9 @@ module.exports = {
     getRespondedUsersForNote: async (req, res) =>{ // получить все отклики для конкретной записи
         const id = req.params.id;
         let responds = await RespondedNote.sequelize.query(
-            `select u.id, u.firstname, u.lastname from User u join RespondedNote r 
-                    on u.id=r.userId where r.noteId = ${id};`,
+            `select u.id as userId, u.firstname, u.lastname, n.id as noteId, n.title from User u join RespondedNote r 
+                    on u.id=r.userId join Note n
+                     on n.id=r.noteId where r.noteId = ${id};`,
             { type: Sequelize.QueryTypes.SELECT });
         res.send(responds);
     },
@@ -22,7 +23,7 @@ module.exports = {
     getAllForNoteUser: async (req, res) =>{ // получить все отклики на все имеющиеся записи пользователя
         const id = req.body.userId;
         let responds = await RespondedNote.sequelize.query(
-            `select u.id as userId, u.firstName, n.title, n.id as noteId from User u join RespondedNote r 
+            `select u.id as userId, u.firstName, u.lastname, n.title, n.id as noteId from User u join RespondedNote r 
                     on u.id=r.userId join Note n 
                     on n.id=r.noteId where n.userId=${id};`,
             { type: Sequelize.QueryTypes.SELECT });
@@ -32,7 +33,7 @@ module.exports = {
     getAllForRespondedUser: async (req, res) =>{ // получить все записи, на которые откликнулся пользователь
         const id = req.params.id;
         let responds = await RespondedNote.sequelize.query(
-            `select n.title, n.description from Note n join RespondedNote r 
+            `select n.title, n.description, n.id as noteId from Note n join RespondedNote r 
                     on n.id=r.noteId where r.userId=${id};`,
             { type: Sequelize.QueryTypes.SELECT });
         res.send(responds);

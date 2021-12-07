@@ -80,7 +80,7 @@ module.exports = {
     c.category, s.subcategory, g.gender
     from Note n join Category c on n.categoryId=c.id 
     join Subcategory s on n.subcategoryId=s.id 
-    join Gender g on n.genderId=g.id where n.title=like'%${title}%';`, { type: Sequelize.QueryTypes.SELECT });
+    join Gender g on n.genderId=g.id where n.title like'%${title}%';`, { type: Sequelize.QueryTypes.SELECT });
     /*    let notes =  await Note.findAll({
             where: { [Op.like]: `%${string}`, },
             raw: true,

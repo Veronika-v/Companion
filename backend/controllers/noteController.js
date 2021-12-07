@@ -1,12 +1,11 @@
 const sequelize = require('../connectionDB');
-const Sequelize = require("sequelize");
+const {Sequelize, Op} = require("sequelize");
 const { Note} = require('../models/schemaDB').ORM(sequelize);
 
-let notes;
-
 module.exports = {
-    addNote : async (req) =>{
-        return await Note.create(req.body);
+    addNote : async (req,res) =>{
+        let note = await Note.create(req.body);
+        res.send(note);
     },
     updateNote : async (req, res)=>{
         const updateNote = req.body;
@@ -16,7 +15,8 @@ module.exports = {
             res.status(500).send("That note doesn't exist");
         }
         else {
-            await Note.update({title: updateNote.title,
+            await Note.update(
+                {title: updateNote.title,
                 description: updateNote.description,
                 countOfMembers: updateNote.countOfMembers,
                 geolocation: updateNote.geolocation,
@@ -26,32 +26,35 @@ module.exports = {
                 ageFrom: updateNote.ageFrom,
                 ageTo: updateNote.ageTo,
                 userId: updateNote.userId,
+                image: updateNote.image,
                 categoryId: updateNote.categoryId,
                 subcategoryId: updateNote.subcategoryId,
-                genderId: updateNote.genderId,}, {where: {id: updateNote.id}});
-            res.json(updateNote);
+                genderId: updateNote.genderId,
+                }, {where: {id: updateNote.id}});
+            res.send(updateNote);
         }
     },
 
     deleteNote : async (req, res)=>{
-
-        let note = await Note.findOne({where: {id: req.body.id}});
+        let id = req.params.id;
+        console.log('delete id: '+id);
+        let note = await Note.findOne({where: {id: id}});
         if(!note){
-            res.status(500).send("That note doesn't exist"+ req.body.id+"  "+note);
+            res.status(500).send("That note doesn't exist"+ id+"  "+note);
         }
         else {
-            await Note.destroy({where: {id: req.body.id}});
-            res.send('destroyed');
+            await Note.destroy({where: {id: id}});
+            res.status(200).send('Deleted');
         }
     },
-    getAll: async () => {
-        notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
+    getAll: async (req, res) => {
+        let notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
     n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
     c.category, s.subcategory, g.gender
     from Note n join Category c on n.categoryId=c.id 
     join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id;`, { type: Sequelize.QueryTypes.SELECT });
-        return notes;
+        res.json(notes);
     },
     findByNoteId: async (req, res) => {
         const id = req.params.id;
@@ -61,7 +64,6 @@ module.exports = {
     from Note n join Category c on n.categoryId=c.id 
     join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id where n.id=${id};`, { type: Sequelize.QueryTypes.SELECT });
-        //let note = await Note.findOne({where: {id: id}});
 
         if(!note){
             res.status(404).send("That note doesn't exist"+ req.body.id+"  "+note);
@@ -70,6 +72,37 @@ module.exports = {
             res.send(note);
         }
     },
+    FindByNoteTitle: async (req, res) => {
+        let title = req.params.title;
+        let notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
+    n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
+    c.category, s.subcategory, g.gender
+    from Note n join Category c on n.categoryId=c.id 
+    join Subcategory s on n.subcategoryId=s.id 
+    join Gender g on n.genderId=g.id where n.title=like'%${title}%';`, { type: Sequelize.QueryTypes.SELECT });
+    /*    let notes =  await Note.findAll({
+            where: { [Op.like]: `%${string}`, },
+            raw: true,
+        });*/
+        res.send(notes);
+    },
+    // findByCategory: async (req, res) => {
+    //     const id = req.params.id;
+    //     let note = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
+    // n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
+    // c.category, s.subcategory, g.gender
+    // from Note n join Category c on n.categoryId=c.id
+    // join Subcategory s on n.subcategoryId=s.id
+    // join Gender g on n.genderId=g.id where n.id=${id};`, { type: Sequelize.QueryTypes.SELECT });
+    //     //let note = await Note.findOne({where: {id: id}});
+    //
+    //     if(!note){
+    //         res.status(404).send("That note doesn't exist"+ req.body.id+"  "+note);
+    //     }
+    //     else {
+    //         res.send(note);
+    //     }
+    // },
     /*FindByNoteTitle: async (json) => {
         return await Users.findAll({
             where: { username: json["username"] },

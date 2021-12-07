@@ -1,18 +1,21 @@
 const express =require('express');
 const app =express();
 const bcrypt = require('bcrypt');
-const sequelize = require('./connectionDB');
-const data = require('./data');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const noteController = require('./controllers/noteController');
+const notifRouter = require('./routes/notifRouter');
+const noteRouter = require('./routes/noteRouter');
 
 app.use(bodyParser.json({ limit: '5mb' }))
 
 app.use(express.json());
-const noteController = require('./controllers/noteController');
-const {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote} = require('./models/schemaDB').ORM(sequelize);
+
+app.use('/notifications', notifRouter.router);
+app.use('/api/notes', noteRouter.router);
+
+/*//const {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote} = require('./models/schemaDB').ORM(sequelize);
 
 app.get('/api/notes', (req,res) =>{
-    //res.send(data.notes);
     noteController.getAll().then(notes =>{
         res.send(notes);
     });
@@ -25,10 +28,10 @@ app.get('/api/notes', (req,res) =>{
     //     }
     //     res.send(notes);
 
-    /*Note.findAll()
+    /!*Note.findAll()
         .then(notes =>{
             res.send(notes);
-        })*/
+        })*!/
 
 });
 
@@ -36,13 +39,14 @@ app.get('/api/notes/:id', (req,res) => {
     noteController.findByNoteId(req, res);
 });
 
+
 app.post('/api/note/add', (req,res) =>{
     //res.send(data.notes);
     console.log("bodddyyyy: "+ req.body);
     noteController.addNote(req).then(note =>{
         res.send(note);
     });
-});
+});*/
 
 app.get('/', (req, res)=>{
     res.send('Server is ready');

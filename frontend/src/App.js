@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import NoteScreen from "./screens/NoteScreen";
 import HomeScreen from "./screens/HomeScreen";
 import React from "react";
@@ -10,19 +10,19 @@ function App() {
         <div className="grid-container">
           <header className="row home">
             <div>
-              <a className="brand" href="/">Companion</a>
+              <Link className="brand" to="/">Companion</Link>
             </div>
             <div>
               <div className="dropdown">
                 <button className="dropbtn">User_name</button>
                 <div className="dropdown-content">
-                  <a href="#">Profile</a>
-                  <a href="#">Notes</a>
-                  <a href="#">Favorites</a>
-                  <a href="#">Notifications</a>
+                  <Link to="#">Profile</Link>
+                  <Link to="#">Notes</Link>
+                  <Link to="#">Favorites</Link>
+                  <Link to="#">Notifications</Link>
                 </div>
               </div>
-              <a href="/signIn">Sign In</a>
+              <Link to="/signIn">Sign In</Link>
             </div>
           </header>
           <main>

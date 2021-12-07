@@ -35,23 +35,7 @@ export default function NoteScreen(props){
                             <div className='row top'>
                                 <div className='col-2'>
                                     <img className="large" src={note.image}/>
-                                    {/*<>
-                                        <li>
-                                            <div className='row'>
-                                                <div>Count</div>
-                                                <div>
-                                                    <select value={count} onChange={e => setCount(e.target.value)}>
-                                                        {
-                                                            [...Array(note.countOfMembers).keys()].map( x =>(
-                                                                <option key={x+1} value={x +1}>{x+1}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </li>*/}
-                                        <button onClick={addToNotificationsHandler} className='block'>Respond to the note</button>
-                                    {/*</>*/}
+                                    <button onClick={addToNotificationsHandler} className='block'>Respond to the note</button>
                                     <br/><br/>
                                     <Link to='/'>Back to the list</Link>
                                 </div>

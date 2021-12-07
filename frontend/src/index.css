@@ -132,6 +132,9 @@ ul{
 li{
   margin-top: 1rem ;
 }
+input,
+select,
+textarea,
 button{
   padding: 1rem;
   border-radius: 0.3rem;
@@ -140,9 +143,15 @@ button{
   font-family:  Apple Chancery;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+button{
   background-color: #98b4ec;
   cursor: pointer;
 }
+input:hover,
+select:hover,
+textarea:hover,
 button:hover{
   background-color: #5584e7;
 }
@@ -193,6 +202,7 @@ img{
 }
 img.medium{
   max-width: 35rem;
+  max-height: 30rem;
   width: 100%;
 }
 img.large{
@@ -206,6 +216,9 @@ img.large{
   background-color: rgba(208, 221, 236, 0.7);
   border-radius: 0.3rem;
   margin: 1rem;
+  max-width: 35rem;
+  max-height: 60rem;
+  min-height: 60rem;
 }
 .card-body{
   padding: 1rem;

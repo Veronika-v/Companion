@@ -97,7 +97,7 @@ function internalORM(sequelize) {
                 autoIncrement: true,
             },
             title: { type: Sequelize.STRING, allowNull: false },
-            description: { type: Sequelize.STRING, allowNull: false },
+            description: { type: Sequelize.TEXT('medium'), allowNull: false },
             countOfMembers: { type: Sequelize.INTEGER, allowNull: false, defaultValue: 1},
             geolocation: { type: Sequelize.STRING, allowNull: true }, //how to do?? what type??
             meetingDateTime: { type: Sequelize.DATE, allowNull: false },
@@ -117,7 +117,7 @@ function internalORM(sequelize) {
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
-            }
+            },
         },
         { sequelize, modelName: "FavoriteNote", tableName: "FavoriteNote", timestamps: false }
     );

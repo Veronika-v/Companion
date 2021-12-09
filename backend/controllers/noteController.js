@@ -29,7 +29,6 @@ module.exports = {
                 userId: updateNote.userId,
                 image: updateNote.image,
                 categoryId: updateNote.categoryId,
-                subcategoryId: updateNote.subcategoryId,
                 genderId: updateNote.genderId,
                 }, {where: {id: updateNote.id}});
             res.send(updateNote);
@@ -50,10 +49,9 @@ module.exports = {
     },
     getAll: async (req, res) => {
         let notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
-    n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
-    c.category, s.subcategory, g.gender
+    n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId, n.categoryId,
+    c.category, g.gender
     from Note n join Category c on n.categoryId=c.id 
-    join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id;`, { type: Sequelize.QueryTypes.SELECT });
         res.json(notes);
     },
@@ -61,9 +59,8 @@ module.exports = {
         const id = req.params.id;
         let note = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
     n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
-    c.category, s.subcategory, g.gender
+    c.category, g.gender
     from Note n join Category c on n.categoryId=c.id 
-    join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id where n.id=${id};`, { type: Sequelize.QueryTypes.SELECT });
 
         if(!note){
@@ -77,9 +74,8 @@ module.exports = {
         let title = req.params.title;
         let notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
     n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
-    c.category, s.subcategory, g.gender
+    c.category, g.gender
     from Note n join Category c on n.categoryId=c.id 
-    join Subcategory s on n.subcategoryId=s.id 
     join Gender g on n.genderId=g.id where n.title like'%${title}%';`, { type: Sequelize.QueryTypes.SELECT });
         res.send(notes);
     },

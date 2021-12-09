@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
-import {Link, useLocation} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import React, {useEffect, useState} from 'react'
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../actions/userActions";
 
 export default function SignInScreen(props){
 
+    const navigate = useNavigate();
     const location =  useLocation();
 
     const [login, setLogin] = useState('');
@@ -14,6 +15,8 @@ export default function SignInScreen(props){
         ? location.search.split('=')[1]
         : '/';
 
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const {userInfo} = userSignIn;
 
     const dispatch = useDispatch();
     const submitHandler = (e) =>{
@@ -21,6 +24,11 @@ export default function SignInScreen(props){
         dispatch(signIn(login, password));
     }
 
+    useEffect(()=>{
+        if(userInfo){
+           navigate(redirect);
+        }
+    }, [navigate, redirect, userInfo]);
     return(
         <div>
             <form className="form" onSubmit={submitHandler}>

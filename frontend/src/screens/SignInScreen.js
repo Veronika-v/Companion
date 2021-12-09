@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
 export default function SignInScreen(props){
 
@@ -16,7 +18,7 @@ export default function SignInScreen(props){
         : '/';
 
     const userSignIn = useSelector((state) => state.userSignIn);
-    const {userInfo} = userSignIn;
+    const {userInfo, loading, error} = userSignIn;
 
     const dispatch = useDispatch();
     const submitHandler = (e) =>{
@@ -34,6 +36,10 @@ export default function SignInScreen(props){
             <form className="form" onSubmit={submitHandler}>
                 <div>
                     <h1 className="title">Sign In</h1>
+                </div>
+                <div>
+                    {loading && <LoadingBox/>}
+                    {error && <MessageBox variant="danger">{error}</MessageBox>}
                 </div>
                 <div>
                     <label htmlFor="login">Login</label>

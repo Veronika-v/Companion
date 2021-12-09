@@ -4,7 +4,7 @@ import {noteDetailsReducer, noteListReducer} from './reducers/noteReducers'
 import {composeWithDevTools} from "redux-devtools-extension";
 import {notificationReducer} from "./reducers/notifReducers";
 import {categoryListReducer} from "./reducers/categoryReducer";
-import {userSignInReducer} from "./reducers/userReducer";
+import {userRegisterReducer, userSignInReducer} from "./reducers/userReducer";
 
 
 const initialState = {
@@ -20,6 +20,7 @@ const reducer = combineReducers({
     notification : notificationReducer,
     categories : categoryListReducer,
     userSignIn : userSignInReducer,
+    userRegister : userRegisterReducer,
 })
 
 const store = createStore(

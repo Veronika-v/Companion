@@ -6,6 +6,7 @@ import NotifScreen from "./screens/NotifScreen";
 import SignInScreen from "./screens/SignInScreen";
 import {useDispatch, useSelector} from "react-redux";
 import {signOut} from "./actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   const userSignIn = useSelector((state) => state.userSignIn);
@@ -45,6 +46,7 @@ function App() {
               <Route path = '/notifications' element={<NotifScreen/>}/>
               <Route path = '/note/:id' element={<NoteScreen/>} />
               <Route path = '/signIn' element={<SignInScreen/>}/>
+              <Route path = '/register' element={<RegisterScreen/>}/>
               <Route path = '/' element={<HomeScreen/>} exact/>
             </Routes>
           </main>

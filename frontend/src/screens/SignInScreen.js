@@ -43,7 +43,7 @@ export default function SignInScreen(props){
                 </div>
                 <div>
                     <label htmlFor="login">Login</label>
-                    <input type="login" id="login" placeholder="Login..." required
+                    <input type="text" id="login" placeholder="Login..." required
                            onChange={e => setLogin(e.target.value)}/>
 
                 </div>

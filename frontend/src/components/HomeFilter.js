@@ -28,13 +28,11 @@ export default function HomeFilter({searchValue, onSearchValueChange, selectValu
     return (
         <div className="filter">
             <div className="row top ">
-                <div className="col-1 left search">
+                <div className="column-1 left search">
                     <input type="text" value={searchValue} onChange={onSearchChange} placeholder='Search...'/>
                 </div>
-                <div className="col-2 medium">
+                <div className="column-2 medium">
                     <CategoryDropdown selectValue={selectValue} onSelectValueChange={setSelectValue}/>
-                </div>
-                <div className="col-2 right ">
                 </div>
             </div>
         </div>

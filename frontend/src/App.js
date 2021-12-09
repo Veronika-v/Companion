@@ -4,11 +4,16 @@ import HomeScreen from "./screens/HomeScreen";
 import React from "react";
 import NotifScreen from "./screens/NotifScreen";
 import SignInScreen from "./screens/SignInScreen";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {signOut} from "./actions/userActions";
 
 function App() {
   const userSignIn = useSelector((state) => state.userSignIn);
   const {userInfo} = userSignIn;
+  const dispatch = useDispatch();
+  const signOutHandler = () =>{
+    dispatch(signOut());
+  }
 
   return (
       <BrowserRouter>
@@ -29,7 +34,7 @@ function App() {
                         <Link to="/notifications">Notifications</Link>
                       </div>
                     </div>
-                    <Link to="/signOut">Sign Out</Link>
+                    <Link to="#signOut" onClick={signOutHandler}>Sign Out</Link>
                   </div>
               :   <Link to="/signIn">Sign In</Link>}
 
@@ -37,10 +42,10 @@ function App() {
           </header>
           <main>
             <Routes>
-              <Route path = '/notifications' element={<NotifScreen/>}></Route>
-              <Route path = '/note/:id' element={<NoteScreen/>} ></Route>
-              <Route path = '/signIn' element={<SignInScreen/>}></Route>
-              <Route path = '/' element={<HomeScreen/>} exact></Route>
+              <Route path = '/notifications' element={<NotifScreen/>}/>
+              <Route path = '/note/:id' element={<NoteScreen/>} />
+              <Route path = '/signIn' element={<SignInScreen/>}/>
+              <Route path = '/' element={<HomeScreen/>} exact/>
             </Routes>
           </main>
           <footer className="row center">

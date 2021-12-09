@@ -1,32 +1,36 @@
 import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {signIn} from "../actions/userActions";
 
-export default function SignInScreen(){
+export default function SignInScreen(props){
 
+    const location =  useLocation();
 
     const [login, setLogin] = useState('');
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const redirect = location.search
+        ? location.search.split('=')[1]
+        : '/';
+
+
+    const dispatch = useDispatch();
     const submitHandler = (e) =>{
         e.preventDefault();
+        dispatch(signIn(login, password));
     }
 
     return(
-        <di>
+        <div>
             <form className="form" onSubmit={submitHandler}>
                 <div>
-                    <h1>Sign In</h1>
+                    <h1 className="title">Sign In</h1>
                 </div>
                 <div>
-                    <label htmlFor="login">Password</label>
+                    <label htmlFor="login">Login</label>
                     <input type="login" id="login" placeholder="Login..." required
                            onChange={e => setLogin(e.target.value)}/>
-
-                </div>
-                <div>
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" id="email" placeholder="Email..." required
-                        onChange={e => setEmail(e.target.value)}/>
 
                 </div>
                 <div>
@@ -41,12 +45,12 @@ export default function SignInScreen(){
                 </div>
                 <div>
                     <label/>
-                    <div>
+                    <div className="center_text">
                         Don't have an account?
                         <Link to="/register"> Register</Link>
                     </div>
                 </div>
             </form>
-        </di>
+        </div>
     )
 }

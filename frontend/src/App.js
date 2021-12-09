@@ -4,8 +4,12 @@ import HomeScreen from "./screens/HomeScreen";
 import React from "react";
 import NotifScreen from "./screens/NotifScreen";
 import SignInScreen from "./screens/SignInScreen";
+import {useSelector} from "react-redux";
 
 function App() {
+  const userSignIn = useSelector((state) => state.userSignIn);
+  const {userInfo} = userSignIn;
+
   return (
       <BrowserRouter>
         <div className="grid-container">
@@ -14,16 +18,21 @@ function App() {
               <Link className="brand" to="/">Companion</Link>
             </div>
             <div>
-              <div className="dropdown">
-                <button className="dropbtn">User_name</button>
-                <div className="dropdown-content">
-                  <Link to="#">Profile</Link>
-                  <Link to="#">Notes</Link>
-                  <Link to="#">Favorites</Link>
-                  <Link to="/notifications">Notifications</Link>
-                </div>
-              </div>
-              <Link to="/signIn">Sign In</Link>
+              {userInfo?
+                  <div>
+                    <div className="dropdown">
+                      <button className="dropbtn">{userInfo.login}</button>
+                      <div className="dropdown-content">
+                        <Link to="#">Profile</Link>
+                        <Link to="#">Notes</Link>
+                        <Link to="#">Favorites</Link>
+                        <Link to="/notifications">Notifications</Link>
+                      </div>
+                    </div>
+                    <Link to="/signOut">Sign Out</Link>
+                  </div>
+              :   <Link to="/signIn">Sign In</Link>}
+
             </div>
           </header>
           <main>

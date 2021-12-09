@@ -3,16 +3,23 @@ import thunk from "redux-thunk";
 import {noteDetailsReducer, noteListReducer} from './reducers/noteReducers'
 import {composeWithDevTools} from "redux-devtools-extension";
 import {notificationReducer} from "./reducers/notifReducers";
-import {categoryListReducer, subcategoryListReducer} from "./reducers/categoryReducer";
+import {categoryListReducer} from "./reducers/categoryReducer";
+import {userSignInReducer} from "./reducers/userReducer";
 
 
-const initialState = {};
+const initialState = {
+    userSignIn: {
+        userInfo: localStorage.getItem('userInfo')
+            ?JSON.parse(localStorage.getItem('userInfo'))
+            :null,
+    }
+};
 const reducer = combineReducers({
     noteList: noteListReducer,
     noteDetails: noteDetailsReducer,
     notification : notificationReducer,
     categories : categoryListReducer,
-    subcategories : subcategoryListReducer,
+    userSignIn : userSignInReducer,
 })
 
 const store = createStore(

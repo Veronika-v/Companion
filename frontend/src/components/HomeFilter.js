@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {detailsNote} from "../actions/noteActions";
 import CategoryDropdown from "./CategoryDropdown";
 
-export default function HomeFilter({searchValue, onSearchValueChange, selectValue, setSelectValue }){
+export default function HomeFilter({searchValue, onSearchValueChange, selectValue, setSelectValue}){
     // const navigate = useNavigate();
     // const params = useParams();
     // const noteId = params.id;
@@ -18,6 +18,9 @@ export default function HomeFilter({searchValue, onSearchValueChange, selectValu
 
 
     const onSearchChange = (e) => {
+        console.log('search e: ', e);
+        console.log('search e.target: ', e.target);
+        console.log('search e.target.value: ', e.target.value);
         onSearchValueChange(e.target.value);
     }
 

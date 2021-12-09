@@ -16,10 +16,7 @@ export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
      }, [])
 
     const onSelectChange = (e) => {
-        console.log('e: ', e);
-        console.log('e.target: ', e.target);
-        //console.log('e.target.value: ', e.target.value);
-        onSelectValueChange(e.value);
+        onSelectValueChange(e);
     }
     const list = [];
 
@@ -30,8 +27,7 @@ export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
                     {categories.map(category => {
                         list.push({value:category.id, label:category.category});
                     })}
-                    {/*<Select value={selectValue} onChange={onSelectChange} options={list}/>*/}
-                    <Select options={list}/>
+                    <Select value={selectValue} onChange={onSelectChange} options={list}/>
             </div>
         </div>
     )

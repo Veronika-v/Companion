@@ -9,7 +9,8 @@ import HomeFilter from "../components/HomeFilter";
 export default function HomeScreen(){
     const dispatch = useDispatch();
     const noteList = useSelector( state => state.noteList);
-    const [searchValue, setSearchValue, selectValue, setSelectValue] = useState('');
+    const [searchValue, setSearchValue] = useState('');
+    const [ selectValue, setSelectValue] = useState(null);
 
     const {loading, error, notes} = noteList;
     useEffect(()=>{
@@ -21,11 +22,16 @@ export default function HomeScreen(){
             {loading?<LoadingBox/>
             : error?<MessageBox variant='danger'>{error}</MessageBox>
             : <div>
-                 <HomeFilter searchValue={searchValue} onSearchValueChange={setSearchValue} selectValue={selectValue} setSelectValue={setSelectValue} />
+                 <HomeFilter searchValue={searchValue} onSearchValueChange={setSearchValue} selectValue={selectValue} setSelectValue={setSelectValue}  />
                  <div className="row center">
                      {notes.map(note => {
                          if(!note.title.toLowerCase().includes(searchValue.toLowerCase())) {
                              return null;
+                         }
+                         if(selectValue){
+                             console.log(`selectValue`, selectValue)
+                            if(note.categoryId!=selectValue.value)
+                                return null;
                          }
                          return (<Note key={note.id} note={note}></Note>);
                      })}

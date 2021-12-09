@@ -1,7 +1,7 @@
 let db = require('../connectionDB'),
     sequelize = db.sequelize,
     Sequelize = db.Sequelize;
-const { Category, Subcategory } = require('../models/schemaDB').ORM(sequelize);
+const { Category } = require('../models/schemaDB').ORM(sequelize);
 
 
 module.exports = {
@@ -10,8 +10,8 @@ module.exports = {
         let categories = await Category.findAll();
         res.send(categories);
     },
-    getAllSubcategories: async (req, res) =>{
-        let subcategories = await Subcategory.findAll();
-        res.send(subcategories);
-    },
+    // getAllSubcategories: async (req, res) =>{
+    //     let subcategories = await Subcategory.findAll();
+    //     res.send(subcategories);
+    // },
 };

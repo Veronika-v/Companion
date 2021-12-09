@@ -8,6 +8,7 @@ router.put('/updateNote', userController.updateUser);
 router.put('/updateNote', userController.updateUserByAdmin);
 router.get('/:id', userController.findById);
 router.get('/', userController.findAll);
+router.post('/signIn', userController.signIn);
 
 module.exports ={
     router : router

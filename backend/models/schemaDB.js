@@ -5,7 +5,7 @@ const Model = Sequelize.Model;
 class Gender extends Model {};
 class UserStatus extends Model {};
 class Category extends Model {};
-class Subcategory extends Model {};
+//class Subcategory extends Model {};
 class User extends Model {};
 class Note extends Model {};
 class FavoriteNote extends Model {};
@@ -51,7 +51,7 @@ function internalORM(sequelize) {
         { sequelize, modelName: "Category", tableName: "Category", timestamps: false }
     );
 
-    Subcategory.init(
+    /*Subcategory.init(
         {
             id: {
                 type: Sequelize.INTEGER,
@@ -62,7 +62,7 @@ function internalORM(sequelize) {
             subcategory: { type: Sequelize.STRING, allowNull: false, unique: true },
         },
         { sequelize, modelName: "Subcategory", tableName: "Subcategory", timestamps: false }
-    );
+    );*/
 
     User.init(
         {
@@ -142,9 +142,9 @@ function internalORM(sequelize) {
 
     Category.hasOne(Note, {foreignKey : {name:  'categoryId', allowNull: false}});
     Gender.hasOne(Note, {foreignKey : {name:  'genderId', allowNull: true}});
-    Subcategory.hasOne(Note, {foreignKey : {name:  'subcategoryId',allowNull: true}});
+    //Subcategory.hasOne(Note, {foreignKey : {name:  'subcategoryId',allowNull: true}});
 
-    Category.hasMany(Subcategory, {foreignKey : {name:  'categoryId', allowNull: false}});
+    //Category.hasMany(Subcategory, {foreignKey : {name:  'categoryId', allowNull: false}});
 
     Note.hasOne(FavoriteNote, {foreignKey : {name:  'noteId', allowNull: false}});
     Note.hasOne(RespondedNote, {foreignKey : {name:  'noteId', allowNull: false}});
@@ -157,6 +157,6 @@ function internalORM(sequelize) {
 
 exports.ORM = (s) => {
     internalORM(s);
-    return {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote, RespondedNote};
+    return {User, Gender, Note, UserStatus, Category, FavoriteNote, RespondedNote};
 }
 

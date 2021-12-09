@@ -132,6 +132,8 @@ ul{
 li{
   margin-top: 1rem ;
 }
+
+
 input,
 select,
 textarea,
@@ -149,9 +151,7 @@ button{
   background-color: #98b4ec;
   cursor: pointer;
 }
-input:hover,
-select:hover,
-textarea:hover,
+
 button:hover{
   background-color: #5584e7;
 }
@@ -195,19 +195,6 @@ a.brand{
   margin-right: 2rem;
 }
 
-.column {
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-.medium, .right {
-  width: 25%;
-}
-.left {
-  width: 50%;
-}
-
-
-
 /* image */
 img{
   border-radius: 0.3rem;
@@ -238,8 +225,6 @@ img.large{
   border-radius: 0.3rem;
   margin: 1rem;
   width: 100%;
-  max-height: 10rem;
-  min-height: 10rem;
 }
 .card-body{
   padding: 1rem;
@@ -285,11 +270,20 @@ img.large{
 
 .filter{
   background-color: #d8e7fa;
-  border-color: #041339;
+  border-radius: 0.3rem;
+  border: 0.1rem #072e94 solid;
+  padding: 1.3rem;
   margin-left: auto;
   margin-right: auto;
-  width: 100rem;
-  height: 8rem;
+  max-width: 100%;
+}
+
+
+.category{
+  border-radius: 0.3rem;
+  border: 0.1rem #072e94 solid;
+  font-size: 1.6rem;
+  font-family:  Apple Chancery;
 }
 
 .tab {

@@ -2,19 +2,21 @@ const express =require('express');
 const app =express();
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-
+const dotenv = require("dotenv");
 
 const notifRouter = require('./routes/notifRouter');
 const noteRouter = require('./routes/noteRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const userRouter = require('./routes/userRouter');
 
-app.use(bodyParser.json({ limit: '5mb' }))
 
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.json());
 
+dotenv.config();
+
 app.use('/notifications', notifRouter.router);
-app.use('/api/notes', noteRouter.router);
+app.use('/notes', noteRouter.router);
 app.use('/categories', categoryRouter.router);
 app.use('/users', userRouter.router);
 

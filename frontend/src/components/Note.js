@@ -27,7 +27,7 @@ export default function Note(props){
                 <Link to={`/note/${note.id}`}>
                     <h2>{note.title}</h2>
                 </Link>
-                <p>{console.log(`id:${note.id}, length:${note.description.length}`)}{note.description.length<190?note.description:`${note.description.slice(0,190)}...`}</p>
+                <p>{note.description.length<190?note.description:`${note.description.slice(0,190)}...`}</p>
                 <p>Count of members: {note.countOfMembers}</p>
                 <p>Category: {note.category}</p>
                 <p>Age: {getAgeRange()}</p>

@@ -13,7 +13,7 @@ export const listNotes = () => async(dispatch) =>{
         type: NOTE_LIST_REQUEST
     });
     try{
-        const {data} = await Axios.get('/api/notes');
+        const {data} = await Axios.get('/notes');
         dispatch({type: NOTE_LIST_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: NOTE_LIST_FAIL, payload: error.message});
@@ -25,7 +25,7 @@ export const detailsNote = (noteId) => async(dispatch) =>{
         type: NOTE_DETAILS_REQUEST, payload: noteId
     });
     try{
-        const {data} = await Axios.get(`/api/notes/${noteId}`);
+        const {data} = await Axios.get(`/notes/${noteId}`);
         dispatch({type: NOTE_DETAILS_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: NOTE_DETAILS_FAIL,

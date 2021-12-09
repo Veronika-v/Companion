@@ -3,6 +3,7 @@ import NoteScreen from "./screens/NoteScreen";
 import HomeScreen from "./screens/HomeScreen";
 import React from "react";
 import NotifScreen from "./screens/NotifScreen";
+import SignInScreen from "./screens/SignInScreen";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Routes>
               <Route path = '/notifications' element={<NotifScreen/>}></Route>
               <Route path = '/note/:id' element={<NoteScreen/>} ></Route>
+              <Route path = '/signIn' element={<SignInScreen/>}></Route>
               <Route path = '/' element={<HomeScreen/>} exact></Route>
             </Routes>
           </main>

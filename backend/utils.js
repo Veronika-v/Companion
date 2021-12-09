@@ -16,7 +16,7 @@ generateToken = (user) =>{
             phoneNumber: user.phoneNumber,
             aboutUser: user.aboutUser,
             genderId: user.genderId,
-        }, process.env.JWT_SECRET,
+        }, process.env.JWT_SECRET || 'somesecrettext',
         {
             expiresIn: '24h'
         }

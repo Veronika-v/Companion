@@ -6,8 +6,14 @@ const { RespondedNote } = require('../models/schemaDB').ORM(sequelize);
 
 module.exports = {
     addNotification : async (req, res) =>{ // откликнуться на запись
-        const respond = await RespondedNote.create(req.body);
-        res.send(respond);
+        const body = req.body;
+        let respond = await RespondedNote.findOne({where: {userId:body.userId, noteId:body.noteId}});
+        if(respond)
+            res.status(500).send("You have already responded for that note");
+        else{
+            respond = await RespondedNote.create(body);
+            res.send(respond);
+        }
     },
 
     getRespondedUsersForNote: async (req, res) =>{ // получить все отклики для конкретной записи
@@ -21,9 +27,9 @@ module.exports = {
     },
 
     getAllForNoteUser: async (req, res) =>{ // получить все отклики на все имеющиеся записи пользователя
-        const id = req.body.userId;
+        const id = req.params.id;
         let responds = await RespondedNote.sequelize.query(
-            `select u.id as userId, u.firstName, u.lastname, n.title, n.id as noteId from User u join RespondedNote r 
+            `select r.id, u.id as userId, u.firstName, u.lastName, n.title, n.id as noteId from User u join RespondedNote r 
                     on u.id=r.userId join Note n 
                     on n.id=r.noteId where n.userId=${id};`,
             { type: Sequelize.QueryTypes.SELECT });
@@ -37,5 +43,13 @@ module.exports = {
                     on n.id=r.noteId where r.userId=${id};`,
             { type: Sequelize.QueryTypes.SELECT });
         res.send(responds);
+    },
+
+    getForRespondedUserByNoteId: async (req, res) =>{ // получить все записи, на которые откликнулся пользователь
+        const body = req.body;
+        let respond = await RespondedNote.findOne({where: {userId:body.userId, noteId:body.noteId}});
+        if(respond)
+            res.status(500).send("You have already responded for that note");
+        res.status(200);
     }
 };

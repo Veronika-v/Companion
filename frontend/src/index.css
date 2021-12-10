@@ -224,7 +224,7 @@ img.large{
   background-color: rgba(208, 221, 236, 0.7);
   border-radius: 0.3rem;
   margin: 1rem;
-  width: 100%;
+  max-width: 55rem;
 }
 .card-body{
   padding: 1rem;
@@ -291,40 +291,26 @@ img.large{
   font-family:  Apple Chancery;
 }
 
-/*.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-
-.tab button:hover {
-  background-color: #ddd;
-}
-
-
-.tab button.active {
-  background-color: #ccc;
-}
-
-
-.tabcontent {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
+.tabs > button {
+  font-size: 20px;
+  border-bottom: 0.3rem #9297bc solid;
+  color: #9297bc;
+  flex: 1;
+  background-color: transparent;
+  border-left: none;
   border-top: none;
-}*/
+  border-right: none;
+}
+.tabs > button.active{
+  border-bottom-color: #041339;
+  text-shadow:  0 0 10px;
+  color: #041339;
+  font-weight: bold;
+}
+.tabs > button:hover{
+  text-shadow:  0 0 10px;
+  font-weight: bold;
+}
 
 
 
@@ -359,4 +345,6 @@ img.large{
 .center_text{
   text-align: center;
 }
+
+
 

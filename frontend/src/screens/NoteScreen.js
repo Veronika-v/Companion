@@ -5,7 +5,6 @@ import {detailsNote} from "../actions/noteActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import {Link} from "react-router-dom";
-import Rating from "../components/Rating";
 import Axios from "axios";
 
 
@@ -13,23 +12,30 @@ export default function NoteScreen(props){
     const navigate = useNavigate();
     const params = useParams();
     const noteId = params.id;
-    //const [count, setCount] = useState(1);
     const dispatch = useDispatch();
     const noteDetails = useSelector(state => state.noteDetails);
     const {loading, error, note}= noteDetails;
+    const userSignIn = useSelector((state) => state.userSignIn);
+    const {userInfo} = userSignIn;
 
     useEffect(() =>{
         dispatch(detailsNote(noteId));
     }, [dispatch, noteId]);
 
     const addToNotificationsHandler = () =>{
+        if(!userInfo){
+            navigate('/signIn');
+        }
         Axios.post(`/notifications/addNotification`,
             {
                 noteId:noteId,
-                userId: 6 //// изменить на текущего пользователя!!!!!!!!!!
-            });
+                userId: userInfo.id
+            }
+        ).catch(err => {
+            console.log(err)
+            alert(err.response.data);
+        });
         navigate('/');
-        //navigate(`/notifications/${noteId}`);
     }
 
     return (
@@ -59,15 +65,12 @@ export default function NoteScreen(props){
                                     <img className="large" src={note.image}/>
                                     <button onClick={addToNotificationsHandler} className='block'>Respond to the note</button>
                                     <br/><br/>
-                                    <Link to='/'>Back to the list</Link>
+                                    <Link to='/'>Go to the notes list</Link>
                                 </div>
                                 <div className='col-1'>
                                     <ul>
                                         <li>
                                             <h1>{note.title}</h1>
-                                        </li>
-                                        <li>
-                                            <Rating rating={note.rating} numReviews={note.numReviews}/>
                                         </li>
                                         <li><span className='nameOfField'>Description:</span> {note.description}</li>
                                         <li><span className='nameOfField'>Date:</span> {note.meetingDateTime}</li>

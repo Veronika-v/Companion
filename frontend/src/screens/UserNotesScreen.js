@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-//import Tabs from "../components/Tabs";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {listUserNotes, listUserResponds} from "../actions/noteActions";

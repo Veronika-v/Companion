@@ -29,7 +29,6 @@ export default function HomeScreen(){
                              return null;
                          }
                          if(selectValue){
-                             console.log(`selectValue`, selectValue)
                             if(note.categoryId!=selectValue.value)
                                 return null;
                          }

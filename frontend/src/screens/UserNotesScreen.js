@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react'
-import Tabs from "../components/Tabs";
+import React, {useEffect, useState} from 'react'
+//import Tabs from "../components/Tabs";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {listUserNotes, listUserResponds} from "../actions/noteActions";
 import UserNotes from "../components/UserNotes";
 import RespondedNote from "../components/RespondedNote";
+import {Tabs, Tab, TabPanel,TabList} from "react-tabs";
 
 export default function UserNotesScreen () {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function UserNotesScreen () {
 
     useEffect(() => {
         if(!userInfo){
-            navigate('/signIn'); ////////// если нет юзера, урл меняется на /signIn, но дальше все равно рендериться эта страница
+            navigate('/signIn');
         }else {
             dispatch(listUserNotes(userInfo.id));
             dispatch(listUserResponds(userInfo.id));
@@ -29,10 +30,19 @@ export default function UserNotesScreen () {
 
     return (
         <div>
-            {/*<Tabs myNotes />
-            <UserNotes loading={loading} error={error} userNotes={notes}/>*/}
-            <Tabs myResponds />
-            <RespondedNote loading={loadingR} error={errorR} responds={responds}/>
+            <Tabs className="tabs">
+                <TabList>
+                    <Tab>My Notes</Tab>
+                    <Tab>My Responds</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <UserNotes loading={loading} error={error} userNotes={notes}/>
+                </TabPanel>
+                <TabPanel>
+                    <RespondedNote loading={loadingR} error={errorR} responds={responds}/>
+                </TabPanel>
+            </Tabs>
         </div>
     )
 }

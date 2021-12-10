@@ -291,25 +291,53 @@ img.large{
   font-family:  Apple Chancery;
 }
 
-.tabs > button {
-  font-size: 20px;
-  border-bottom: 0.3rem #9297bc solid;
-  color: #9297bc;
-  flex: 1;
-  background-color: transparent;
-  border-left: none;
-  border-top: none;
-  border-right: none;
+
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #072e94;
+  margin: 0 0 10px;
+  font-size: 18px;
+  padding: 0;
 }
-.tabs > button.active{
-  border-bottom-color: #041339;
-  text-shadow:  0 0 10px;
-  color: #041339;
-  font-weight: bold;
+.react-tabs__tab {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-bottom: none;
+  bottom: -1px;
+  position: relative;
+  list-style: none;
+  padding: 6px 12px;
+  cursor: pointer;
 }
-.tabs > button:hover{
-  text-shadow:  0 0 10px;
+.react-tabs__tab--selected {
+  background: #d8e7fa;
+  border-color: #072e94;
+  color: #04103e;
   font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+.react-tabs__tab-panel {
+  display: none;
+}
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+.react-tabs__tab--disabled{
+  color: GrayText; cursor: default;
+}
+.react-tabs__tab:focus {
+  box-shadow: #04103e 0 0 25px;
+  border-color: hsl(208,99%, 50%);
+  outline: none;
+}
+.react-tabs__tab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+  background: #e0e0ff;
 }
 
 

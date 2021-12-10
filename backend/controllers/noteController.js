@@ -55,6 +55,17 @@ module.exports = {
     join Gender g on n.genderId=g.id;`, { type: Sequelize.QueryTypes.SELECT });
         res.json(notes);
     },
+
+    getAllByUserId: async (req, res) => {
+        const id = req.params.id;
+        let notes = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,
+    n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId, n.categoryId,
+    c.category, g.gender
+    from Note n join Category c on n.categoryId=c.id 
+    join Gender g on n.genderId=g.id where n.userId=${id};`, { type: Sequelize.QueryTypes.SELECT });
+        res.json(notes);
+    },
+
     findByNoteId: async (req, res) => {
         const id = req.params.id;
         let note = await Note.sequelize.query(`select n.id, n.title, n.description, n.countOfMembers, n.geolocation,

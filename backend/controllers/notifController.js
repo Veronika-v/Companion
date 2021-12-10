@@ -44,12 +44,4 @@ module.exports = {
             { type: Sequelize.QueryTypes.SELECT });
         res.send(responds);
     },
-
-    getForRespondedUserByNoteId: async (req, res) =>{ // получить все записи, на которые откликнулся пользователь
-        const body = req.body;
-        let respond = await RespondedNote.findOne({where: {userId:body.userId, noteId:body.noteId}});
-        if(respond)
-            res.status(500).send("You have already responded for that note");
-        res.status(200);
-    }
 };

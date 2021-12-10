@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
-import {noteDetailsReducer, noteListReducer} from './reducers/noteReducers'
+import {noteDetailsReducer, noteListReducer, userNoteListReducer} from './reducers/noteReducers'
 import {composeWithDevTools} from "redux-devtools-extension";
 import {notificationReducer} from "./reducers/notifReducers";
 import {categoryListReducer} from "./reducers/categoryReducer";
@@ -21,6 +21,7 @@ const reducer = combineReducers({
     categories : categoryListReducer,
     userSignIn : userSignInReducer,
     userRegister : userRegisterReducer,
+    userNoteList : userNoteListReducer,
 })
 
 const store = createStore(

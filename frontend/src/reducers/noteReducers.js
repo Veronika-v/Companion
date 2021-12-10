@@ -4,7 +4,7 @@ import {
     NOTE_DETAILS_SUCCESS,
     NOTE_LIST_FAIL,
     NOTE_LIST_REQUEST,
-    NOTE_LIST_SUCCESS
+    NOTE_LIST_SUCCESS, USERNOTE_LIST_FAIL, USERNOTE_LIST_REQUEST, USERNOTE_LIST_SUCCESS
 } from "../constants/noteConstants";
 
 export const noteListReducer = (state = {
@@ -33,3 +33,18 @@ export const noteDetailsReducer = (state ={ notes: {}, loading: true}, action) =
             return state;
     }
 }
+
+export const userNoteListReducer = (state = {
+    loading: true, notes : []}, action) => {
+    switch(action.type){
+        case USERNOTE_LIST_REQUEST:
+            return {loading: true};
+        case USERNOTE_LIST_SUCCESS:
+            return {loading: false, notes: action.payload};
+        case USERNOTE_LIST_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+}
+

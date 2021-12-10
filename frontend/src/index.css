@@ -81,6 +81,7 @@ body {
 }
 
 header{
+  font-size: 19px;
   grid-area: header;
   background-color: #d0e1f9;
   box-shadow: #04103e 0 0 25px;

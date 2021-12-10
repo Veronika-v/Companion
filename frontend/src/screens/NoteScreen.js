@@ -25,17 +25,18 @@ export default function NoteScreen(props){
     const addToNotificationsHandler = () =>{
         if(!userInfo){
             navigate('/signIn');
+        }else{
+            Axios.post(`/notifications/addNotification`,
+                {
+                    noteId:noteId,
+                    userId: userInfo.id
+                }
+            ).catch(err => {
+                console.log(err)
+                alert(err.response.data);
+            });
+            navigate('/');
         }
-        Axios.post(`/notifications/addNotification`,
-            {
-                noteId:noteId,
-                userId: userInfo.id
-            }
-        ).catch(err => {
-            console.log(err)
-            alert(err.response.data);
-        });
-        navigate('/');
     }
 
     return (

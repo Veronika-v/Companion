@@ -4,7 +4,12 @@ import {
     NOTE_DETAILS_SUCCESS,
     NOTE_LIST_FAIL,
     NOTE_LIST_REQUEST,
-    NOTE_LIST_SUCCESS, USERNOTE_LIST_FAIL, USERNOTE_LIST_REQUEST, USERNOTE_LIST_SUCCESS
+    NOTE_LIST_SUCCESS, USER_RESPONDS_FAIL,
+    USER_RESPONDS_REQUEST,
+    USER_RESPONDS_SUCCESS,
+    USERNOTE_LIST_FAIL,
+    USERNOTE_LIST_REQUEST,
+    USERNOTE_LIST_SUCCESS
 } from "../constants/noteConstants";
 import Axios from "axios";
 
@@ -46,5 +51,17 @@ export const listUserNotes = (userId) => async(dispatch) =>{
         dispatch({type: USERNOTE_LIST_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: USERNOTE_LIST_FAIL, payload: error.message});
+    }
+};
+
+export const listUserResponds = (userId) => async(dispatch) =>{
+    dispatch({
+        type: USER_RESPONDS_REQUEST
+    });
+    try{
+        const {data} = await Axios.get(`notifications/getAllForRespondedUser/${userId}`);
+        dispatch({type: USER_RESPONDS_SUCCESS, payload: data});
+    }catch(error){
+        dispatch({type: USER_RESPONDS_FAIL, payload: error.message});
     }
 };

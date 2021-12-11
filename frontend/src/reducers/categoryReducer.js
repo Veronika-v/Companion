@@ -20,18 +20,3 @@ export const categoryListReducer = (state = {
             return state;
     }
 }
-
-
-export const subcategoryListReducer = (state = {
-    subcategories : []}, action) => {
-    switch(action.type){
-        // case CATEGORY_LIST_REQUEST:
-        //     return {loading: true};
-        case SUBCATEGORY_LIST_SUCCESS:
-            return { subcategories: action.payload};
-        case SUBCATEGORY_LIST_FAIL:
-            return { error: action.payload};
-        default:
-            return state;
-    }
-}

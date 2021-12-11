@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Select from 'react-select';
 import {useDispatch, useSelector} from "react-redux";
-import {listCategories, listSubcategories} from "../actions/categoryActions";
+import {listCategories} from "../actions/categoryActions";
 
 export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
 
     return (
         <div>
-            <div  className='category'>
+            <div  className='select'>
                     {categories.map(category => {
                         list.push({value:category.id, label:category.category});
                     })}

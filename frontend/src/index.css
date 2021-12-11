@@ -137,6 +137,7 @@ li{
   margin-top: 1rem ;
 }
 
+.custom-file-upload,
 label.checkbox,
 input,
 select,
@@ -153,6 +154,7 @@ button{
 
 label.checkbox{
   background-color: white;
+  font-size: 20px;
 }
 
 button{
@@ -292,7 +294,7 @@ img.large{
   flex: 0 5 22rem;
 }
 
-.category{
+.selectField{
   border-radius: 0.3rem;
   border: 0.1rem #072e94 solid;
   font-size: 1.6rem;
@@ -386,6 +388,22 @@ img.large{
 {
   vertical-align:middle;
 }
+
+[type="file"]
+{
+  background-color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  background-color: white;
+  cursor: pointer;
+}
+
+
+
 
 
 

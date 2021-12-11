@@ -1,4 +1,6 @@
 import {
+    NOTE_ADD_FAIL,
+    NOTE_ADD_REQUEST, NOTE_ADD_SUCCESS,
     NOTE_DETAILS_FAIL,
     NOTE_DETAILS_REQUEST,
     NOTE_DETAILS_SUCCESS,
@@ -62,6 +64,21 @@ export const userRespondsReducer = (state = {
             return {loadingR: false, responds: action.payload};
         case USER_RESPONDS_FAIL:
             return {loadingR: false, errorR: action.payload};
+        default:
+            return state;
+    }
+}
+
+
+export const addNoteReducer = (state = {
+    loading: true, note : []}, action) => {
+    switch(action.type){
+        case NOTE_ADD_REQUEST:
+            return {loading: true};
+        case NOTE_ADD_SUCCESS:
+            return {loading: false, note: action.payload};
+        case NOTE_ADD_FAIL:
+            return {loading: false, error: action.payload};
         default:
             return state;
     }

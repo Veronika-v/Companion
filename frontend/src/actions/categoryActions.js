@@ -1,10 +1,6 @@
 import {
     CATEGORY_LIST_FAIL,
     CATEGORY_LIST_SUCCESS,
-    CATEGORY_LIST_REQUEST,
-    SUBCATEGORY_LIST_SUCCESS,
-    SUBCATEGORY_LIST_REQUEST,
-    SUBCATEGORY_LIST_FAIL
 } from "../constants/categoryConstants";
 import Axios from "axios";
 

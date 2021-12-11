@@ -1,4 +1,6 @@
 import {
+    NOTE_ADD_FAIL,
+    NOTE_ADD_REQUEST, NOTE_ADD_SUCCESS,
     NOTE_DETAILS_FAIL,
     NOTE_DETAILS_REQUEST,
     NOTE_DETAILS_SUCCESS,
@@ -63,5 +65,24 @@ export const listUserResponds = (userId) => async(dispatch) =>{
         dispatch({type: USER_RESPONDS_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: USER_RESPONDS_FAIL, payload: error.message});
+    }
+};
+
+export const addNote = (title, description, meetingDateTime, money, userId,
+                        categoryId, genderId, countOfMembers, geolocation, ageFrom, ageTo, image) => async(dispatch) =>{
+    dispatch({
+        type: NOTE_ADD_REQUEST
+    });
+    try{
+        const {data} = await Axios.post('/notes/add', {
+            title, description, meetingDateTime, money, userId,
+            categoryId, genderId, countOfMembers, geolocation, ageFrom, ageTo, image
+        }).catch(err => {
+            console.log(err)
+            alert(err.response.data);
+        });
+        dispatch({type: NOTE_ADD_SUCCESS, payload: data});
+    }catch(error){
+        dispatch({type: NOTE_ADD_FAIL, payload: error.message});
     }
 };

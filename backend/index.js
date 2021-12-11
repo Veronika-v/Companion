@@ -8,6 +8,7 @@ const notifRouter = require('./routes/notifRouter');
 const noteRouter = require('./routes/noteRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const userRouter = require('./routes/userRouter');
+const genderRouter = require('./routes/genderRouter');
 
 
 app.use(bodyParser.json({ limit: '5mb' }));
@@ -18,6 +19,7 @@ dotenv.config();
 app.use('/notifications', notifRouter.router);
 app.use('/notes', noteRouter.router);
 app.use('/categories', categoryRouter.router);
+app.use('/genders', genderRouter.router);
 app.use('/users', userRouter.router);
 
 /*//const {User, Gender, Note, UserStatus, Category, Subcategory, FavoriteNote} = require('./models/schemaDB').ORM(sequelize);

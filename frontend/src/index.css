@@ -64,6 +64,9 @@ body {
   font-weight: bold;
   background-color: #d0e1f9 ;
 }
+.dropbtn{
+  font-size: 19px;
+}
 
 
 
@@ -134,7 +137,7 @@ li{
   margin-top: 1rem ;
 }
 
-
+label.checkbox,
 input,
 select,
 textarea,
@@ -146,8 +149,12 @@ button{
   font-family:  Apple Chancery;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
+
+label.checkbox{
+  background-color: white;
+}
+
 button{
   background-color: #98b4ec;
   cursor: pointer;
@@ -373,6 +380,11 @@ img.large{
 
 .center_text{
   text-align: center;
+}
+
+[type="checkbox"]
+{
+  vertical-align:middle;
 }
 
 

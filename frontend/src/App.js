@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {signOut} from "./actions/userActions";
 import RegisterScreen from "./screens/RegisterScreen";
 import UserNotesScreen from "./screens/UserNotesScreen";
+import AddNoteScreen from "./components/AddNoteScreen";
 
 function App() {
   const userSignIn = useSelector((state) => state.userSignIn);
@@ -48,6 +49,7 @@ function App() {
               <Route path = '/note/:id' element={<NoteScreen/>} />
               {/*<Route path = '/user/:id' element={<UserScreen/>} />*/}
               <Route path = '/userNotes' element={<UserNotesScreen/>}/>
+              <Route path = '/note/add' element={<AddNoteScreen/>}/>
               <Route path = '/signIn' element={<SignInScreen/>}/>
               <Route path = '/register' element={<RegisterScreen/>}/>
               <Route path = '/' element={<HomeScreen/>} exact/>

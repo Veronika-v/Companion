@@ -7,10 +7,8 @@ import {listCategories} from "../actions/categoryActions";
 export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
     const dispatch = useDispatch();
     const categoriesList = useSelector( state => state.categories);
-    console.log('selectValue: ', selectValue);
 
     const { categories} = categoriesList;
-    console.log('categories: ',categories);
     useEffect(()=>{
         dispatch(listCategories());
      }, [])
@@ -23,7 +21,7 @@ export default function CategoryDropdown ({selectValue,onSelectValueChange }) {
 
     return (
         <div>
-            <div  className='select'>
+            <div  className='selectField'>
                     {categories.map(category => {
                         list.push({value:category.id, label:category.category});
                     })}

@@ -79,7 +79,6 @@ export default function NoteScreen(props){
                                         <li><span className='nameOfField'>Count of members:</span> {note.countOfMembers}</li>
                                         <li><span className='nameOfField'>Gender: </span> {note.gender}</li>
                                         <li><span className='nameOfField'>Category: </span> {note.category}</li>
-                                        <li><span className='nameOfField'>Subcategory: </span> {note.subcategory}</li>
                                         <li><span className='nameOfField'>Cost: </span> {note.money==0?`don't need money`:`need some money`}</li>
                                         <li><span className='nameOfField'>Age range: </span> {getAgeRange()}</li>
                                     </ul>

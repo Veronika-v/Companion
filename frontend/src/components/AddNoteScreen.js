@@ -6,10 +6,9 @@ import MessageBox from "../components/MessageBox";
 import Select from "react-select";
 import {listCategories} from "../actions/categoryActions";
 import {listGenders} from "../actions/genderActions";
-import CategoryDropdown from "./CategoryDropdown";
 import {addNote} from "../actions/noteActions";
 
-export default function AddNoteScreen(){
+export default function AddNoteScreen(props){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,7 +22,7 @@ export default function AddNoteScreen(){
     const [ageFrom, setAgeFrom] = useState(Number);
     const [ageTo, setAgeTo] = useState(Number);
     const [countOfMembers, setCountOfMembers] = useState(Number);
-    const [image, setImage] = useState('');
+    const [selectImageValue, setSelectImageValue] = useState('');
     const [ selectCategoryValue, setSelectCategoryValue] = useState(null);
     const [ selectGenderValue, setSelectGenderValue] = useState(null);
 
@@ -58,11 +57,25 @@ export default function AddNoteScreen(){
         e.preventDefault();
 
         dispatch(addNote(title, description, meetingDateTime, money, userInfo.id,
-            selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, image));
+            selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, selectImageValue));
     }
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+    const onChangeImageHandler = async (e) => {
+        e.preventDefault();
 
-
-
+        let file = e.target.files[0];
+        if(!validFileType(file))
+            alert('You can load only .jpg, .jpeg, .png files ');
+        else {
+            const image = await toBase64(file);
+            setSelectImageValue(image);
+        }
+    };
     const onSelectCategoryChange = (e) => {
         setSelectCategoryValue(e);
     }
@@ -140,15 +153,15 @@ export default function AddNoteScreen(){
                 <div >
                     <label className="checkbox" htmlFor="money">Need money:
                         <input type="checkbox" id="money"
-                               onChange={e => setMoney(e.target.value)}/>
+                               onChange={e => setMoney(e.target.checked)}/>
                     </label>
                 </div>
 
                 <div>
                     <label className="custom-file-upload">
                         <input type="file" id="image" placeholder="Image..." accept=".jpg, .jpeg, .png"
-                               onChange={e => setImage(e.target.value)}/>
-                        <i className="fa fa-cloud-upload"></i> Upload image
+                               onChange={onChangeImageHandler}/>
+                        <i className="fa fa-cloud-upload"/> Upload image
                     </label>
                 </div>
                 <div>

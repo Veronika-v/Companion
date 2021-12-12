@@ -227,7 +227,7 @@ img.large{
   margin: 1rem;
   max-width: 35rem;
   min-width: 35rem;
-  max-height: 60rem;
+  /*max-height: 60rem;*/
   min-height: 60rem;
 }
 .notification{

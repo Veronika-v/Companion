@@ -12,7 +12,7 @@ module.exports = {
             res.status(500).send("You have already responded for that note");
         else{
             respond = await RespondedNote.create(body);
-            res.send(respond);
+            res.status(201).send({message: "You've responded to the note" });
         }
     },
 

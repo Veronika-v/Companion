@@ -30,6 +30,11 @@ export default function NoteScreen(props){
                 {
                     noteId:noteId,
                     userId: userInfo.id
+                },
+                {
+                    headers:{
+                        Authorization: `Bearer ${userInfo.token}`,
+                    },
                 }
             ).catch(err => {
                 console.log(err)

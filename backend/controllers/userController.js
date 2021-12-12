@@ -3,7 +3,7 @@ let db = require('../connectionDB'),
     Sequelize = db.Sequelize;
 const bcrypt = require("bcrypt");
 const { User } = require('../models/schemaDB').ORM(sequelize);
-const generateToken = require('../utils');
+const {generateToken} = require('../utils');
 
 
 module.exports = {

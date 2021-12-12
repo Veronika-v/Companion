@@ -215,8 +215,8 @@ img.medium{
   width: 100%;
 }
 img.large{
-  max-width: 55rem;
-  width: 100%;
+  max-height: 40rem;
+  max-width: 45rem;
 }
 
 /* card */

@@ -79,7 +79,7 @@ export default function NoteScreen(props){
                                             <h1>{note.title}</h1>
                                         </li>
                                         <li><span className='nameOfField'>Description:</span> {note.description}</li>
-                                        <li><span className='nameOfField'>Date:</span> {note.meetingDateTime}</li>
+                                        <li><span className='nameOfField'>Date:</span> {note.meetingDateTime.slice(0, 19).replace('T', ' ')}</li>
                                         <li><span className='nameOfField'>Geolocation:</span> {note.geolocation}</li>
                                         <li><span className='nameOfField'>Count of members:</span> {note.countOfMembers}</li>
                                         <li><span className='nameOfField'>Gender: </span> {note.gender}</li>

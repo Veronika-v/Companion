@@ -118,6 +118,7 @@ export default function AddNoteScreen(props){
                 <div>
                     <input type="datetime-local" id="meeetingDateTime" placeholder="Meeting Date&Time..." required
                            onChange={e => setMeetingDateTime(e.target.value)}/>
+                    {console.log(meetingDateTime)}
                 </div>
                 <div>
                     <div  className='selectField'>
@@ -138,7 +139,7 @@ export default function AddNoteScreen(props){
                     </div>
                 </div>
                 <div>
-                    <input type="text" id="geolocation" placeholder="Geolocation..."
+                    <input type="text" id="geolocation" placeholder="Geolocation..." required
                            onChange={e => setGeolocation(e.target.value)}/>
                 </div>
                 <div>

@@ -44,40 +44,57 @@ export const detailsNote = (noteId) => async(dispatch) =>{
     }
 };
 
-export const listUserNotes = (userId) => async(dispatch) =>{
+export const listUserNotes = (userInfo) => async(dispatch) =>{
     dispatch({
         type: USERNOTE_LIST_REQUEST
     });
     try{
-        const {data} = await Axios.get(`notes/getAllByUserId/${userId}`);
+        const {data} = await Axios.get(`notes/getAllByUserId/${userInfo.id}`,
+
+            {
+                headers:{
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            });
         dispatch({type: USERNOTE_LIST_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: USERNOTE_LIST_FAIL, payload: error.message});
     }
 };
 
-export const listUserResponds = (userId) => async(dispatch) =>{
+export const listUserResponds = (userInfo) => async(dispatch) =>{
     dispatch({
         type: USER_RESPONDS_REQUEST
     });
     try{
-        const {data} = await Axios.get(`notifications/getAllForRespondedUser/${userId}`);
+        const {data} = await Axios.get(`notifications/getAllForRespondedUser/${userInfo.id}`,
+            {
+                headers:{
+                    Authorization: `Bearer ${userInfo.token}`,
+                }
+            });
         dispatch({type: USER_RESPONDS_SUCCESS, payload: data});
     }catch(error){
         dispatch({type: USER_RESPONDS_FAIL, payload: error.message});
     }
 };
 
-export const addNote = (title, description, meetingDateTime, money, userId,
+export const addNote = (title, description, meetingDateTime, money, userInfo,
                         categoryId, genderId, countOfMembers, geolocation, ageFrom, ageTo, image) => async(dispatch) =>{
     dispatch({
         type: NOTE_ADD_REQUEST
     });
     try{
+        const userId = userInfo.id
         const {data} = await Axios.post('/notes/add', {
             title, description, meetingDateTime, money, userId,
-            categoryId, genderId, countOfMembers, geolocation, ageFrom, ageTo, image
-        }).catch(err => {
+            categoryId, genderId, countOfMembers, geolocation, ageFrom, ageTo, image,
+        },
+        {
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`,
+            }}
+        ).catch(err => {
             console.log(err)
             alert(err.response.data);
         });

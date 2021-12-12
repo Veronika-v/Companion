@@ -22,8 +22,8 @@ export default function UserNotesScreen () {
         if(!userInfo){
             navigate('/signIn');
         }else {
-            dispatch(listUserNotes(userInfo.id));
-            dispatch(listUserResponds(userInfo.id));
+            dispatch(listUserNotes(userInfo));
+            dispatch(listUserResponds(userInfo));
         }
     }, [dispatch, userInfo]);
 

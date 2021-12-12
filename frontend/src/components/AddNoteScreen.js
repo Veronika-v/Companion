@@ -56,7 +56,7 @@ export default function AddNoteScreen(props){
     const submitHandler = (e) =>{
         e.preventDefault();
 
-        dispatch(addNote(title, description, meetingDateTime, money, userInfo.id,
+        dispatch(addNote(title, description, meetingDateTime, money, userInfo,
             selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, selectImageValue));
         navigate('/userNotes');
     }

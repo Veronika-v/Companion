@@ -58,7 +58,10 @@ export default function AddNoteScreen(props){
 
         dispatch(addNote(title, description, meetingDateTime, money, userInfo.id,
             selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, selectImageValue));
+        navigate('/userNotes');
     }
+
+
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);

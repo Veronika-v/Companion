@@ -226,6 +226,7 @@ img.large{
   border-radius: 0.3rem;
   margin: 1rem;
   max-width: 35rem;
+  min-width: 35rem;
   max-height: 60rem;
   min-height: 60rem;
 }

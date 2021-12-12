@@ -2,8 +2,12 @@ import Axios from "axios";
 import {NOTIFICATION_ADD_ITEM} from "../constants/notifConstants";
 import {useSelector} from "react-redux";
 
-export const getAllNotificationsForUser = (userId) => async (dispatch, getState) => {
-    const {data} = await Axios.get(`/notifications/getAllForNoteUser/${userId}`);
+export const getAllNotificationsForUser = (userInfo) => async (dispatch, getState) => {
+    const {data} = await Axios.get(`/notifications/getAllForNoteUser/${userInfo.id}`,
+        {
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`,
+            }});
     dispatch({
         type: NOTIFICATION_ADD_ITEM,
         payload: data.map(item => ({

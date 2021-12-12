@@ -19,7 +19,7 @@ export default function NotificationScreen(props){
         if(!userInfo){
             navigate('/signIn'); ////////// если нет юзера, урл меняется на /signIn, но дальше все равно рендериться эта страница
         }else {
-            dispatch(getAllNotificationsForUser(userInfo.id));
+            dispatch(getAllNotificationsForUser(userInfo));
         }
     }, [userInfo]);
 

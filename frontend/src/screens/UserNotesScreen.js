@@ -5,6 +5,7 @@ import {listUserNotes, listUserResponds} from "../actions/noteActions";
 import UserNotes from "../components/UserNotes";
 import RespondedNote from "../components/RespondedNote";
 import {Tabs, Tab, TabPanel,TabList} from "react-tabs";
+import Axios from "axios";
 
 export default function UserNotesScreen () {
     const navigate = useNavigate();
@@ -17,6 +18,10 @@ export default function UserNotesScreen () {
 
     const userResponds = useSelector(state => state.userResponds);
     const {loadingR, errorR, responds} = userResponds;
+
+    const createNoteHandler = () =>{
+        navigate('/note/add');
+    }
 
     useEffect(() => {
         if(!userInfo){
@@ -36,7 +41,10 @@ export default function UserNotesScreen () {
                 </TabList>
 
                 <TabPanel>
-                    <UserNotes loading={loading} error={error} userNotes={notes}/>
+                    <div>
+                        <button className="addNote" onClick={createNoteHandler}>New Note</button>
+                        <UserNotes loading={loading} error={error} userNotes={notes}/>
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <RespondedNote loading={loadingR} error={errorR} responds={responds}/>

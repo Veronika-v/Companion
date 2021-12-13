@@ -169,6 +169,10 @@ button.block{
   width: 100%;
 }
 
+button.addNote{
+  float: right;
+}
+
 
 a{
   color: #041339;

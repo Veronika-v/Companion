@@ -6,9 +6,9 @@ import {
     NOTE_DETAILS_SUCCESS,
     NOTE_LIST_FAIL,
     NOTE_LIST_REQUEST,
-    NOTE_LIST_SUCCESS, USER_RESPONDS_FAIL,
+    NOTE_LIST_SUCCESS, NOTE_UPDATE_FAIL, NOTE_UPDATE_REQUEST, NOTE_UPDATE_SUCCESS, USER_RESPONDS_FAIL,
     USER_RESPONDS_REQUEST,
-    USER_RESPONDS_SUCCESS,
+    USER_RESPONDS_SUCCESS, USERNOTE_LIST_UPLOAD,
     USERNOTE_LIST_FAIL,
     USERNOTE_LIST_REQUEST,
     USERNOTE_LIST_SUCCESS
@@ -50,6 +50,8 @@ export const userNoteListReducer = (state = {
             return {loading: false, notes: action.payload};
         case USERNOTE_LIST_FAIL:
             return {loading: false, error: action.payload};
+        case USERNOTE_LIST_UPLOAD:
+            return { ...state, loading: false, notes: state.notes.filter(item => item.id != action.payload)}
         default:
             return state;
     }
@@ -79,6 +81,34 @@ export const addNoteReducer = (state = {
             return {loading: false, note: action.payload};
         case NOTE_ADD_FAIL:
             return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+}
+
+
+export const updateNoteReducer = (state = {
+    loading: true, note : []}, action) => {
+    switch(action.type){
+        case NOTE_UPDATE_REQUEST:
+            return {loading: true};
+        case NOTE_UPDATE_SUCCESS:
+            return {loading: false, note: action.payload};
+        case NOTE_UPDATE_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+}
+
+export const deleteNoteReducer = (state = {}, action) => {
+    switch(action.type){
+        case NOTE_UPDATE_REQUEST:
+            return;
+        case NOTE_UPDATE_SUCCESS:
+            return { message: action.payload};
+        case NOTE_UPDATE_FAIL:
+            return { error: action.payload};
         default:
             return state;
     }

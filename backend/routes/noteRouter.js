@@ -5,7 +5,7 @@ const {isAuth} = require("../utils");
 
 const router = express.Router();
 router.post('/add', isAuth, noteController.addNote);
-router.put('/updateNote', isAuth, noteController.updateNote);
+router.put('/update', isAuth, noteController.updateNote);
 router.delete('/delete/:id', isAuth, noteController.deleteNote);
 router.get('/', noteController.getAll);
 router.get('/:id', noteController.findByNoteId);

@@ -9,6 +9,8 @@ import {signOut} from "./actions/userActions";
 import RegisterScreen from "./screens/RegisterScreen";
 import UserNotesScreen from "./screens/UserNotesScreen";
 import AddNoteScreen from "./components/AddNoteScreen";
+import UpdateNoteScreen from "./screens/UpdateNoteScreen";
+import UserScreen from "./screens/UserScreen";
 
 function App() {
   const userSignIn = useSelector((state) => state.userSignIn);
@@ -17,6 +19,8 @@ function App() {
   const signOutHandler = () =>{
     dispatch(signOut());
   }
+
+  const profilePath = `/users/${userInfo.id}`;
 
   return (
       <BrowserRouter>
@@ -28,26 +32,35 @@ function App() {
             <div>
               {userInfo?
                   <div>
-                    <div className="dropdown">
-                      <button className="dropbtn">{userInfo.login}</button>
-                      <div className="dropdown-content">
-                        <Link to="#">Profile</Link>
-                        <Link to="/userNotes">Notes</Link>
-                        <Link to="#">Favorites</Link>
-                        <Link to="/notifications">Notifications</Link>
+                    {!userInfo.role ?
+                      <div className="dropdown">
+                        <button className="dropbtn">{userInfo.login}</button>
+                        <div className="dropdown-content">
+                          <Link to={profilePath}>Profile</Link>
+                          <Link to="/userNotes">Notes</Link>
+                          <Link to="/notifications">Notifications</Link>
+                        </div>
                       </div>
-                    </div>
+                      :
+                        <div className="dropdown">
+                          <button className="dropbtn">{userInfo.login}</button>
+                          <div className="dropdown-content">
+                            <Link to="#">Chek Notes</Link>
+                          </div>
+                        </div>
+                    }
                     <Link to="#signOut" onClick={signOutHandler}>Sign Out</Link>
                   </div>
-              :   <Link to="/signIn">Sign In</Link>}
-
+              :   <Link to="/signIn">Sign In</Link>
+              }
             </div>
           </header>
           <main>
             <Routes>
               <Route path = '/notifications' element={<NotifScreen/>}/>
               <Route path = '/note/:id' element={<NoteScreen/>} />
-              {/*<Route path = '/user/:id' element={<UserScreen/>} />*/}
+              <Route path = '/note/update/:id' element={<UpdateNoteScreen/>} />
+              <Route path = '/user/:id' element={<UserScreen/>} />
               <Route path = '/userNotes' element={<UserNotesScreen/>}/>
               <Route path = '/note/add' element={<AddNoteScreen/>}/>
               <Route path = '/signIn' element={<SignInScreen/>}/>

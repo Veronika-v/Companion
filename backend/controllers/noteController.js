@@ -11,7 +11,7 @@ module.exports = {
     updateNote : async (req, res)=>{
         const updateNote = req.body;
 
-        let note = await Note.findOne({where: {id: updateNote.id}});
+        let note = await Note.findOne({where: {id: updateNote.noteId}});
         if(!note){
             res.status(500).send("That note doesn't exist");
         }

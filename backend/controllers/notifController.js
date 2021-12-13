@@ -1,17 +1,19 @@
 let db = require('../connectionDB'),
     sequelize = db.sequelize,
     Sequelize = db.Sequelize;
-const { RespondedNote } = require('../models/schemaDB').ORM(sequelize);
+const { RespondedNote, Note } = require('../models/schemaDB').ORM(sequelize);
 
 
 module.exports = {
     addNotification : async (req, res) =>{ // откликнуться на запись
         const body = req.body;
-        let respond = await RespondedNote.findOne({where: {userId:body.userId, noteId:body.noteId}});
-        if(respond)
+        const note = await Note.findOne({where:{ id: body.noteId}});
+        if(note.userId== body.userId)
+            res.status(500).send("You are the owner of that note. You can't respond to it!");
+        else if(await RespondedNote.findOne({where: {userId:body.userId, noteId:body.noteId}}))
             res.status(500).send("You have already responded for that note");
         else{
-            respond = await RespondedNote.create(body);
+            await RespondedNote.create(body);
             res.status(201).send({message: "You've responded to the note" });
         }
     },

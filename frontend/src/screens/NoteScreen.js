@@ -36,11 +36,13 @@ export default function NoteScreen(props){
                         Authorization: `Bearer ${userInfo.token}`,
                     },
                 }
-            ).catch(err => {
+            ).then( ()=>{
+                alert("You've responded to the note!");
+                navigate('/userNotes');
+            }).catch(err => {
                 console.log(err)
                 alert(err.response.data);
             });
-            navigate('/');
         }
     }
 
@@ -51,6 +53,9 @@ export default function NoteScreen(props){
                     : (
                         <div>
                             {note.map(note => {
+                            // let date = Date.parse(note.meetingDateTime);
+                            // //date= date.setHours(date.getHours() + 3);
+                            // console.log(typeof date);
                             function getAgeRange(){
                                 let range;
                                 if(note.ageFrom || note.ageTo){

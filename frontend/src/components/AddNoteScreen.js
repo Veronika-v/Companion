@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -12,7 +12,6 @@ export default function AddNoteScreen(props){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location =  useLocation();
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -55,10 +54,16 @@ export default function AddNoteScreen(props){
 
     const submitHandler = (e) =>{
         e.preventDefault();
-
-        dispatch(addNote(title, description, meetingDateTime, money, userInfo,
-            selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, selectImageValue));
-        navigate('/userNotes');
+        if(!selectCategoryValue)
+            alert("A leisure type cannot be empty");
+        else if (!selectGenderValue)
+            alert("Gender cannot be empty");
+        else {
+            dispatch(addNote(title, description, meetingDateTime, money, userInfo,
+                selectCategoryValue.value, selectGenderValue.value, countOfMembers, geolocation, ageFrom, ageTo, selectImageValue));
+            alert("Note added successfully!")
+            navigate('/');
+        }
     }
 
 
@@ -118,7 +123,7 @@ export default function AddNoteScreen(props){
                 <div>
                     <input type="datetime-local" id="meeetingDateTime" placeholder="Meeting Date&Time..." required
                            onChange={e => setMeetingDateTime(e.target.value)}/>
-                    {console.log(meetingDateTime)}
+                    {console.log( typeof meetingDateTime)}
                 </div>
                 <div>
                     <div  className='selectField'>
@@ -167,6 +172,7 @@ export default function AddNoteScreen(props){
                                onChange={onChangeImageHandler}/>
                         <i className="fa fa-cloud-upload"/> Upload image
                     </label>
+                    <img className="medium" src={selectImageValue}/>
                 </div>
                 <div>
                     <label/>

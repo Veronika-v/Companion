@@ -42,7 +42,7 @@ export default function UserNotesScreen () {
 
                 <TabPanel>
                     <div>
-                        <button className="addNote" onClick={createNoteHandler}>New Note</button>
+                        <button className="note" onClick={createNoteHandler}>New Note</button>
                         <UserNotes loading={loading} error={error} userNotes={notes}/>
                     </div>
                 </TabPanel>

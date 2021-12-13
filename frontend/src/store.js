@@ -1,16 +1,16 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {
-    addNoteReducer,
+    addNoteReducer, deleteNoteReducer,
     noteDetailsReducer,
-    noteListReducer,
+    noteListReducer, updateNoteReducer,
     userNoteListReducer,
     userRespondsReducer
 } from './reducers/noteReducers'
 import {composeWithDevTools} from "redux-devtools-extension";
 import {notificationReducer} from "./reducers/notifReducers";
 import {categoryListReducer} from "./reducers/categoryReducer";
-import {userRegisterReducer, userSignInReducer} from "./reducers/userReducer";
+import {userDetailsReducer, userRegisterReducer, userSignInReducer} from "./reducers/userReducer";
 import {genderListReducer} from "./reducers/genderReducer";
 
 
@@ -32,6 +32,9 @@ const reducer = combineReducers({
     userResponds : userRespondsReducer,
     genders : genderListReducer,
     addNote : addNoteReducer,
+    updateNote : updateNoteReducer,
+    deleteNote : deleteNoteReducer,
+    userDetails : userDetailsReducer,
 })
 
 const store = createStore(

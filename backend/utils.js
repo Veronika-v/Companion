@@ -13,6 +13,7 @@ module.exports = {
                 login: user.login,
                 email: user.email,
                 image: user.image,
+                statusId: user.statusId,
                 nativeTown: user.nativeTown,
                 education: user.education,
                 phoneNumber: user.phoneNumber,
@@ -37,8 +38,15 @@ module.exports = {
                     if (err) {
                         res.status(401).send('Invalid Token')
                     } else {
-                        req.user = decode;
-                        next();
+
+                        console.log('decode: ', decode)
+                        console.log('decode.statusId: ', decode.statusId)
+                        if (decode.statusId == 2) {
+                            res.status(401).send('Your account is blocked')
+                        }
+                        else
+                            req.user = decode;
+                            next();
                     }
                 })
         } else {

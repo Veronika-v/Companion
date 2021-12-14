@@ -62,6 +62,10 @@ export const allUsersReducer = (state = {
             return {loading: true};
         case ACTIVE_USERS_SUCCESS:
             return {loading: false, users: action.payload};
+        case BLOCK_USER_SUCCESS:
+            return {...state, loading: false, users: state.users.map(user => user.id == action.payload.id ? action.payload : user)};
+        case ACTIVATE_USER_SUCCESS:
+            return {...state, loading: false, users: state.users.map(user => user.id == action.payload.id ? action.payload : user)};
         case ACTIVE_USERS_FAIL:
             return {loading: false, error: action.payload};
         default:
@@ -75,8 +79,6 @@ export const toActivateReducer = (state = {
     switch(action.type){
         case ACTIVATE_USER_REQUEST:
             return {loading: true};
-        case ACTIVATE_USER_SUCCESS:
-            return {loading: false, users: action.payload};
         case ACTIVATE_USER_FAIL:
             return {loading: false, error: action.payload};
         default:
@@ -90,8 +92,6 @@ export const toBlockReducer = (state = {
     switch(action.type){
         case BLOCK_USER_REQUEST:
             return {loading: true};
-        case BLOCK_USER_SUCCESS:
-            return {loading: false, users: action.payload};
         case BLOCK_USER_FAIL:
             return {loading: false, error: action.payload};
         default:

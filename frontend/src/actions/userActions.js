@@ -100,7 +100,6 @@ export const activateUser = (userId) => async(dispatch, getState) =>{
     const {
         userSignIn: { userInfo },
     } = getState();
-    console.log(userInfo)
     try{
         const {data} = await Axios.get(`/users/user/${userId}/activate`,
             {
@@ -119,7 +118,6 @@ export const blockUser = (userId) => async(dispatch, getState) =>{
     const {
         userSignIn: { userInfo },
     } = getState();
-    console.log(userInfo)
     try{
         const {data} = await Axios.get(`/users/user/${userId}/block`,
             {

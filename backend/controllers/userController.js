@@ -97,11 +97,12 @@ module.exports = {
             res.status(404).send("User not found");
         else {
             await User.update({statusId: 2}, {where: {id: user.id}});
+            const user_ = await User.findOne({where: {id: user.id}});
             const notes = await Note.findAll( {where: {userId: user.id}});
             notes.map( note =>{
                 Note.update({status:0}, {where: {id: note.id}});
             });
-            res.status(200).send(`User "${user.firstName} ${user.lastName}" Blocked`);
+            res.send(user_);
         }
     },
 
@@ -112,11 +113,12 @@ module.exports = {
             res.status(404).send("User not found");
         else {
             await User.update({statusId: 1}, {where: {id: user.id}});
+            const user_ = await User.findOne({where: {id: user.id}});
             const notes = await Note.findAll( {where: {userId: user.id}});
             notes.map( note =>{
                 Note.update({status:1}, {where: {id: note.id}});
             })
-            res.status(200).send(`User "${user.firstName} ${user.lastName}" Activated`);
+            res.send(user_);
         }
     },
 

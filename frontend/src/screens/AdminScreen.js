@@ -44,6 +44,7 @@ export default function AdminScreen(){
         // console.log('blocked: ', blocked)
     }
 
+    console.log('active: ', active)
     useEffect(() => {
         if(!userInfo){
             navigate('/signIn');

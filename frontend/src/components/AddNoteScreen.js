@@ -123,7 +123,6 @@ export default function AddNoteScreen(props){
                 <div>
                     <input type="datetime-local" id="meeetingDateTime" placeholder="Meeting Date&Time..." required
                            onChange={e => setMeetingDateTime(e.target.value)}/>
-                    {console.log( typeof meetingDateTime)}
                 </div>
                 <div>
                     <div  className='selectField'>

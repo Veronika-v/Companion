@@ -20,7 +20,7 @@ function App() {
     dispatch(signOut());
   }
 
-  const profilePath = `/users/${userInfo.id}`;
+  const profilePath = `/user/${userInfo.id}`;
 
   return (
       <BrowserRouter>

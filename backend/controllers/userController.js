@@ -75,7 +75,7 @@ module.exports = {
     },
 
     findById: async (req, res) => {
-        let id = req.body.id;
+        let id = req.params.id;
         let user = await User.findOne({ where : {id: id}});
         if(user)
             res.send(user)

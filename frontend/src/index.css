@@ -378,6 +378,10 @@ img.large{
   display: block;
 }
 
+.user{
+  font-size: 18px;
+}
+
 .title {
   text-align: center;
   text-shadow: #04103e 0 0 25px;

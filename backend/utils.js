@@ -35,7 +35,7 @@ module.exports = {
                 process.env.JWT_SECRET || 'somesecrettext',
                 (err, decode) => {
                     if (err) {
-                        res.status(401).send( 'Invalid Token')
+                        res.status(401).send('Invalid Token')
                     } else {
                         req.user = decode;
                         next();
@@ -43,6 +43,13 @@ module.exports = {
                 })
         } else {
             res.status(401).send('No Token')
+        }
+    },
+    isAdmin: (req, res, next) => {
+        if (req.user && req.user.role) {
+            next();
+        } else {
+            res.status(401).send({message: 'Invalid Admin Token'});
         }
     }
 }

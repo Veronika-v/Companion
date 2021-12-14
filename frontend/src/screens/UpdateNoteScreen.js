@@ -58,7 +58,10 @@ export default function UpdateNoteScreen(props) {
                 headers:{
                     Authorization: `Bearer ${userInfo.token}`,
                 }}
-        ).catch(err => {
+        ).then(()=>{
+            alert('Updated successfully!!');
+        })
+            .catch(err => {
             alert(err.response.data);
         });
         navigate('/');

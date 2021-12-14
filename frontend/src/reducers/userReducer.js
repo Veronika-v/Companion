@@ -1,4 +1,8 @@
 import {
+    ACTIVATE_USER_FAIL,
+    ACTIVATE_USER_REQUEST, ACTIVATE_USER_SUCCESS,
+    ACTIVE_USERS_FAIL,
+    ACTIVE_USERS_REQUEST, ACTIVE_USERS_SUCCESS, BLOCK_USER_FAIL, BLOCK_USER_REQUEST, BLOCK_USER_SUCCESS,
     USER_DETAILS_FAIL,
     USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS,
     USER_REGISTER_FAIL,
@@ -45,6 +49,51 @@ export const userDetailsReducer = (state = { loading: true }, action) => {
             return { loading: false, user: action.payload };
         case USER_DETAILS_FAIL:
             return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+
+export const allUsersReducer = (state = {
+    loading: true, users : []}, action) => {
+    switch(action.type){
+        case ACTIVE_USERS_REQUEST:
+            return {loading: true};
+        case ACTIVE_USERS_SUCCESS:
+            return {loading: false, users: action.payload};
+        case ACTIVE_USERS_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+};
+
+
+export const toActivateReducer = (state = {
+    loading: true, users : []}, action) => {
+    switch(action.type){
+        case ACTIVATE_USER_REQUEST:
+            return {loading: true};
+        case ACTIVATE_USER_SUCCESS:
+            return {loading: false, users: action.payload};
+        case ACTIVATE_USER_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+};
+
+
+export const toBlockReducer = (state = {
+    loading: true, users : []}, action) => {
+    switch(action.type){
+        case BLOCK_USER_REQUEST:
+            return {loading: true};
+        case BLOCK_USER_SUCCESS:
+            return {loading: false, users: action.payload};
+        case BLOCK_USER_FAIL:
+            return {loading: false, error: action.payload};
         default:
             return state;
     }

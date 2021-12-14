@@ -11,6 +11,8 @@ import UserNotesScreen from "./screens/UserNotesScreen";
 import AddNoteScreen from "./components/AddNoteScreen";
 import UpdateNoteScreen from "./screens/UpdateNoteScreen";
 import UserScreen from "./screens/UserScreen";
+import AdminScreen from "./screens/AdminScreen";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   const userSignIn = useSelector((state) => state.userSignIn);
@@ -20,7 +22,9 @@ function App() {
     dispatch(signOut());
   }
 
-  const profilePath = `/user/${userInfo.id}`;
+  let profilePath;
+  if(userInfo)
+    profilePath = `/user/${userInfo.id}`;
 
   return (
       <BrowserRouter>
@@ -45,7 +49,7 @@ function App() {
                         <div className="dropdown">
                           <button className="dropbtn">{userInfo.login}</button>
                           <div className="dropdown-content">
-                            <Link to="#">Chek Notes</Link>
+                            <Link to="/adminConsole">Chek Users</Link>
                           </div>
                         </div>
                     }
@@ -62,6 +66,7 @@ function App() {
               <Route path = '/note/update/:id' element={<UpdateNoteScreen/>} />
               <Route path = '/user/:id' element={<UserScreen/>} />
               <Route path = '/userNotes' element={<UserNotesScreen/>}/>
+              <Route path = '/adminConsole' element={<AdminRoute><AdminScreen/></AdminRoute>}/>
               <Route path = '/note/add' element={<AddNoteScreen/>}/>
               <Route path = '/signIn' element={<SignInScreen/>}/>
               <Route path = '/register' element={<RegisterScreen/>}/>

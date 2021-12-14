@@ -52,7 +52,7 @@ module.exports = {
     n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId, n.categoryId,
     c.category, g.gender
     from Note n join Category c on n.categoryId=c.id 
-    join Gender g on n.genderId=g.id;`, { type: Sequelize.QueryTypes.SELECT });
+    join Gender g on n.genderId=g.id where n.status=1;`, { type: Sequelize.QueryTypes.SELECT });
         res.json(notes);
     },
 
@@ -72,10 +72,10 @@ module.exports = {
     n.image, n.meetingDateTime, n.status, n.money, n.ageFrom, n.ageTo, n.userId,
     c.category, g.gender
     from Note n join Category c on n.categoryId=c.id 
-    join Gender g on n.genderId=g.id where n.id=${id};`, { type: Sequelize.QueryTypes.SELECT });
+    join Gender g on n.genderId=g.id where n.id=${id}, n.status=1;`, { type: Sequelize.QueryTypes.SELECT });
 
         if(!note){
-            res.status(404).send("That note doesn't exist"+ req.body.id+"  "+note);
+            res.status(404).send("That note blocked or doesn't exist"+ req.body.id+"  "+note);
         }
         else {
             res.send(note);

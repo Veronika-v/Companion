@@ -10,7 +10,13 @@ import {
 import {composeWithDevTools} from "redux-devtools-extension";
 import {notificationReducer} from "./reducers/notifReducers";
 import {categoryListReducer} from "./reducers/categoryReducer";
-import {userDetailsReducer, userRegisterReducer, userSignInReducer} from "./reducers/userReducer";
+import {
+    allUsersReducer,
+    toActivateReducer, toBlockReducer,
+    userDetailsReducer,
+    userRegisterReducer,
+    userSignInReducer
+} from "./reducers/userReducer";
 import {genderListReducer} from "./reducers/genderReducer";
 
 
@@ -35,6 +41,9 @@ const reducer = combineReducers({
     updateNote : updateNoteReducer,
     deleteNote : deleteNoteReducer,
     userDetails : userDetailsReducer,
+    allUsers : allUsersReducer,
+    toActivateUser : toActivateReducer,
+    toBlockUser : toBlockReducer,
 })
 
 const store = createStore(

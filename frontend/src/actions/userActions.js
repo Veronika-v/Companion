@@ -1,4 +1,8 @@
 import {
+    ACTIVATE_USER_FAIL,
+    ACTIVATE_USER_REQUEST, ACTIVATE_USER_SUCCESS,
+    ACTIVE_USERS_FAIL,
+    ACTIVE_USERS_REQUEST, ACTIVE_USERS_SUCCESS, BLOCK_USER_FAIL, BLOCK_USER_REQUEST, BLOCK_USER_SUCCESS,
     USER_DETAILS_FAIL,
     USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS,
     USER_REGISTER_FAIL,
@@ -56,7 +60,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
         userSignIn: { userInfo },
     } = getState();
     try {
-        const { data } = await Axios.get(`/users/${userId}`, {
+        const { data } = await Axios.get(`/users/user/${userId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
@@ -68,3 +72,65 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
         dispatch({ type: USER_DETAILS_FAIL, payload: message });
     }
 };
+
+export const allUsers = () => async(dispatch, getState) =>{
+    dispatch({
+        type: ACTIVE_USERS_REQUEST
+    });
+    const {
+        userSignIn: { userInfo },
+    } = getState();
+    console.log(userInfo)
+    try{
+        const {data} = await Axios.get('/users',
+        {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({type: ACTIVE_USERS_SUCCESS, payload: data});
+    }catch(error){
+        dispatch({type: ACTIVE_USERS_FAIL, payload: error.message});
+    }
+};
+
+
+export const activateUser = (userId) => async(dispatch, getState) =>{
+    dispatch({
+        type: ACTIVATE_USER_REQUEST
+    });
+    const {
+        userSignIn: { userInfo },
+    } = getState();
+    console.log(userInfo)
+    try{
+        const {data} = await Axios.get(`/users/user/${userId}/activate`,
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
+        dispatch({type: ACTIVATE_USER_SUCCESS, payload: data});
+    }catch(error){
+        dispatch({type: ACTIVATE_USER_FAIL, payload: error.message});
+    }
+};
+
+export const blockUser = (userId) => async(dispatch, getState) =>{
+    dispatch({
+        type: BLOCK_USER_REQUEST
+    });
+    const {
+        userSignIn: { userInfo },
+    } = getState();
+    console.log(userInfo)
+    try{
+        const {data} = await Axios.get(`/users/user/${userId}/block`,
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` },
+            });
+        dispatch({type: BLOCK_USER_SUCCESS, payload: data});
+    }catch(error){
+        dispatch({type: BLOCK_USER_FAIL, payload: error.message});
+    }
+};
+
+
+
+

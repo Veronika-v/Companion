@@ -24,7 +24,7 @@ export default function HomeScreen(){
             : <div>
                  <HomeFilter searchValue={searchValue} onSearchValueChange={setSearchValue} selectValue={selectValue} setSelectValue={setSelectValue}  />
                  <div className="row center">
-                     {notes.map(note => {
+                     {notes?.map(note => {
                          if(!note.title.toLowerCase().includes(searchValue.toLowerCase())) {
                              return null;
                          }

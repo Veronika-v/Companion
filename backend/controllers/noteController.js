@@ -30,7 +30,7 @@ module.exports = {
                 image: updateNote.image,
                 categoryId: updateNote.categoryId,
                 genderId: updateNote.genderId,
-                }, {where: {id: updateNote.id}});
+                }, {where: {id: updateNote.noteId}});
             res.send(updateNote);
         }
     },
